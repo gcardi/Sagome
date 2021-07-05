@@ -7,6 +7,7 @@ Bisogna espandere il file Audio.7z presente in Risorse: per motivi di spazio i .
 
 La strttura delle cartelle deve essere la seguente:
 
+```
 ├───FFTW
 │   ├───fftw-3.3-dll32
 │   └───fftw-3.3-dll64
@@ -16,4 +17,5 @@ La strttura delle cartelle deve essere la seguente:
 │   └───Win64
 |         ibfftw3-3.a
 └───Risorse
+```
 
