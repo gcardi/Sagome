@@ -6,7 +6,7 @@
         <AppType>Application</AppType>
         <MainSource>Sagome.cpp</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
     </PropertyGroup>
@@ -134,7 +134,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <LinkPackageStatics>rtl.lib;vcl.lib;vclactnband.lib;vclx.lib;IndySystem.lib;IndyCore.lib;vclwinx.lib;vclimg.lib</LinkPackageStatics>
+        <LinkPackageStatics>rtl.lib;vcl.lib;vclactnband.lib;vclx.lib;IndySystem.lib;IndyCore.lib;vclwinx.lib;vclimg.lib;Tee.lib;bindengine.lib</LinkPackageStatics>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -1630,7 +1630,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>if not exist &quot;$(OUTPUTDIR)\libfftw3-3.dll&quot;  copy &quot;$(PROJECTDIR)\FFTW\fftw-3.3-dll32\libfftw3-3.dll&quot; &quot;$(OUTPUTDIR)&quot;</PostBuildEvent>
+        <PostBuildEvent>if not exist &quot;$(OUTPUTDIR)\libfftw3-3.dll&quot;  copy &quot;$(PROJECTDIR)\FFTW\fftw-3.3-dll32\libfftw3-3.dll&quot; &quot;$(OUTPUTDIR)&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
@@ -1638,7 +1638,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>if not exist &quot;$(OUTPUTDIR)\libfftw3-3.dll&quot;  copy &quot;$(PROJECTDIR)\FFTW\fftw-3.3-dll64\libfftw3-3.dll&quot; &quot;$(OUTPUTDIR)&quot;</PostBuildEvent>
+        <PostBuildEvent>if not exist &quot;$(OUTPUTDIR)\libfftw3-3.dll&quot;  copy &quot;$(PROJECTDIR)\FFTW\fftw-3.3-dll64\libfftw3-3.dll&quot; &quot;$(OUTPUTDIR)&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
@@ -1646,7 +1646,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>if not exist &quot;$(OUTPUTDIR)\libfftw3-3.dll&quot;  copy &quot;$(PROJECTDIR)\FFTW\fftw-3.3-dll32\libfftw3-3.dll&quot; &quot;$(OUTPUTDIR)&quot;</PostBuildEvent>
+        <PostBuildEvent>if not exist &quot;$(OUTPUTDIR)\libfftw3-3.dll&quot;  copy &quot;$(PROJECTDIR)\FFTW\fftw-3.3-dll32\libfftw3-3.dll&quot; &quot;$(OUTPUTDIR)&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
@@ -1654,7 +1654,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>if not exist &quot;$(OUTPUTDIR)\libfftw3-3.dll&quot;  copy &quot;$(PROJECTDIR)\FFTW\fftw-3.3-dll64\libfftw3-3.dll&quot; &quot;$(OUTPUTDIR)&quot;</PostBuildEvent>
+        <PostBuildEvent>if not exist &quot;$(OUTPUTDIR)\libfftw3-3.dll&quot;  copy &quot;$(PROJECTDIR)\FFTW\fftw-3.3-dll64\libfftw3-3.dll&quot; &quot;$(OUTPUTDIR)&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

@@ -1048,7 +1048,7 @@ void __fastcall TfrmMain::actFnPresetMultipleRegistersExecute(TObject *Sender)
     }
 
     LogMessage(
-        _T( "Reply: %s\n" ), ARRAYOFCONST( ( WordsToString( Data ) ) ), clGreen
+        _T( "Sent: %s\n" ), ARRAYOFCONST( ( WordsToString( Data ) ) ), clGreen
     );
 }
 //---------------------------------------------------------------------------

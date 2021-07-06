@@ -365,16 +365,19 @@ object frmMain: TfrmMain
             inherited pgctrlFunctions: TPageControl
               Width = 617
               Height = 79
-              ActivePage = frmeModbusFunctions1.tbshtFnPresetSingleRegister
               ExplicitWidth = 617
               ExplicitHeight = 79
               inherited tbshrFnReadHoldingRegisters: TTabSheet
+                ExplicitWidth = 609
+                ExplicitHeight = 51
                 inherited Button2: TButton
                   Action = actFnReadHoldingRegisters
                   Caption = 'Read'
                 end
               end
               inherited tbshrFnReadInputRegisters: TTabSheet
+                ExplicitWidth = 609
+                ExplicitHeight = 51
                 inherited Button6: TButton
                   Action = actFnReadInputRegisters
                   Caption = 'Read'
@@ -386,6 +389,16 @@ object frmMain: TfrmMain
                 inherited Button3: TButton
                   Action = actFnPresetSingleRegister
                   Caption = 'Preset'
+                end
+              end
+              inherited tbshtFnPresetMultipleRegisters: TTabSheet
+                ExplicitWidth = 609
+                ExplicitHeight = 51
+                inherited Button5: TButton
+                  Action = actFnPresetMultipleRegisters
+                end
+                inherited edtPresetMultipleRegistersData: TEdit
+                  Width = 287
                 end
               end
             end
