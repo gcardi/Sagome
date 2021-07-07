@@ -7,6 +7,8 @@ Win64/
 html/
 latex/
 FFTW/
+!Libs/Win32
+!Libs/Win64
 Risorse/*.wav
 *.bak
 *.dcp
