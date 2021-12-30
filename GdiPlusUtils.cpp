@@ -6,17 +6,13 @@
 #include <memory>
 #include <vector>
 
-#include <boost/utility.hpp>
-#include <boost/scoped_ptr.hpp>
-
 #include "GdiPlusUtils.h"
 
 #include "VclGdiplus.h"
 
 using std::auto_ptr;
 using std::vector;
-
-using boost::scoped_ptr;
+using std::make_unique;
 
 using Gdiplus::GdiplusStartup;
 using Gdiplus::GdiplusShutdown;
@@ -127,11 +123,13 @@ String GetGdiplusStatusStrings( Gdiplus::Status Code ) {
 }
 //---------------------------------------------------------------------------
 
-class TEOSErrorLocalFree : public boost::noncopyable {
+class TEOSErrorLocalFree {
 public:
-    explicit __fastcall TEOSErrorLocalFree( PVOID Buffer )
+    explicit TEOSErrorLocalFree( PVOID Buffer )
         : Buffer_( Buffer ) {}
-    __fastcall ~TEOSErrorLocalFree() { LocalFree( Buffer_ ); }
+    ~TEOSErrorLocalFree() { LocalFree( Buffer_ ); }
+    TEOSErrorLocalFree( TEOSErrorLocalFree const & ) = delete;
+    TEOSErrorLocalFree& operator=( TEOSErrorLocalFree const & ) = delete;
 private:
     PVOID Buffer_;
 };
@@ -394,11 +392,9 @@ Gdiplus::Image* LoadImageFromStream( TStream* Stream, String MimeType )
 
     CLSID ClassID;
     GetEncoderClsid( MimeType.c_str(), &ClassID );
-    //IStream& istream = *SA->operator IStream *();
     _di_IStream istream = SA->operator _di_IStream();
 
-    scoped_ptr<Gdiplus::Image> i( new Gdiplus::Image( istream ) );
-    //scoped_ptr<Gdiplus::Image> i( new Gdiplus::Image( &istream ) );
+    auto i = make_unique<Gdiplus::Image>( istream );
     Gdiplus::SizeF Size;
     i->GetPhysicalDimension( &Size );
     auto_ptr<Gdiplus::Bitmap> Bmp( new Gdiplus::Bitmap( Size.Width, Size.Height ) );
