@@ -31,6 +31,6 @@ Risorse/*.wav
 *.~*
 *.twfd
 *.twopts
-twfiles.@@@
+*.@@@
 ~$*.*
 *.tmp
