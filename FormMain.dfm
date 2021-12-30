@@ -3,7 +3,7 @@ object frmMain: TfrmMain
   Top = 0
   Caption = 'frmMain'
   ClientHeight = 722
-  ClientWidth = 956
+  ClientWidth = 957
   Color = clBtnFace
   Constraints.MinHeight = 600
   Constraints.MinWidth = 970
@@ -20,7 +20,7 @@ object frmMain: TfrmMain
   object Splitter1: TSplitter
     Left = 0
     Top = 294
-    Width = 956
+    Width = 957
     Height = 3
     Cursor = crVSplit
     Align = alTop
@@ -32,7 +32,7 @@ object frmMain: TfrmMain
   object pnlLog: TPanel
     Left = 0
     Top = 438
-    Width = 956
+    Width = 957
     Height = 265
     Margins.Left = 8
     Margins.Top = 0
@@ -44,25 +44,27 @@ object frmMain: TfrmMain
     Constraints.MinHeight = 100
     ShowCaption = False
     TabOrder = 0
+    ExplicitWidth = 954
+    ExplicitHeight = 261
     inline frmeLog1: TfrmeLog
       Left = 0
       Top = 0
-      Width = 956
+      Width = 957
       Height = 265
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 956
-      ExplicitHeight = 265
+      ExplicitWidth = 954
+      ExplicitHeight = 261
       inherited RichEdit1: TRichEdit
-        Width = 956
+        Width = 957
         Height = 248
         ScrollBars = ssBoth
-        ExplicitWidth = 956
-        ExplicitHeight = 248
+        ExplicitWidth = 954
+        ExplicitHeight = 244
       end
       inherited Panel2: TPanel
-        Width = 956
-        ExplicitWidth = 956
+        Width = 957
+        ExplicitWidth = 954
         inherited SpeedButton1: TSpeedButton
           Font.Color = clBtnText
         end
@@ -72,41 +74,46 @@ object frmMain: TfrmMain
   object StatusBar1: TStatusBar
     Left = 0
     Top = 703
-    Width = 956
+    Width = 957
     Height = 19
     AutoHint = True
     Panels = <>
     SimplePanel = True
+    ExplicitTop = 699
+    ExplicitWidth = 954
   end
   object pnlTrials: TPanel
     Left = 0
     Top = 297
-    Width = 956
+    Width = 957
     Height = 141
     Align = alTop
     BevelOuter = bvNone
     Caption = 'pnlTrials'
     ShowCaption = False
     TabOrder = 2
+    ExplicitWidth = 954
     object Panel6: TPanel
       Left = 0
       Top = 0
-      Width = 956
+      Width = 957
       Height = 17
       Align = alTop
       Caption = 'Trials'
       TabOrder = 0
+      ExplicitWidth = 954
     end
     object Panel3: TPanel
       Left = 0
       Top = 17
-      Width = 662
+      Width = 663
       Height = 124
       Align = alClient
       BevelOuter = bvNone
       Caption = 'Panel3'
       ShowCaption = False
       TabOrder = 1
+      ExplicitWidth = 660
       object PageControl1: TPageControl
         Left = 0
         Top = 0
@@ -367,7 +374,6 @@ object frmMain: TfrmMain
             inherited pgctrlFunctions: TPageControl
               Width = 617
               Height = 79
-              ActivePage = frmeModbusFunctions1.tbshtFnPresetSingleRegister
               ExplicitWidth = 617
               ExplicitHeight = 79
               inherited tbshrFnReadHoldingRegisters: TTabSheet
@@ -412,8 +418,7 @@ object frmMain: TfrmMain
               end
               inherited tbshtFnPresetSingleRegister: TTabSheet
                 ExplicitTop = 24
-                ExplicitWidth = 609
-                ExplicitHeight = 51
+                ExplicitHeight = 75
                 inherited Label8: TLabel
                   Width = 39
                   Height = 13
@@ -439,7 +444,8 @@ object frmMain: TfrmMain
               end
               inherited tbshtFnPresetMultipleRegisters: TTabSheet
                 ExplicitTop = 24
-                ExplicitHeight = 75
+                ExplicitWidth = 609
+                ExplicitHeight = 51
                 inherited Label10: TLabel
                   Width = 39
                   Height = 13
@@ -458,6 +464,13 @@ object frmMain: TfrmMain
                   ExplicitWidth = 46
                   ExplicitHeight = 13
                 end
+                inherited Button5: TButton
+                  Action = actFnPresetMultipleRegisters
+                end
+                inherited edtPresetMultipleRegistersData: TEdit
+                  Width = 287
+                  ExplicitWidth = 287
+                end
               end
             end
           end
@@ -465,7 +478,7 @@ object frmMain: TfrmMain
       end
     end
     object pnlStopwatch: TPanel
-      Left = 662
+      Left = 663
       Top = 17
       Width = 294
       Height = 124
@@ -474,6 +487,7 @@ object frmMain: TfrmMain
       Caption = 'pnlStopwatch'
       ShowCaption = False
       TabOrder = 2
+      ExplicitLeft = 660
       DesignSize = (
         294
         124)
@@ -504,21 +518,23 @@ object frmMain: TfrmMain
   object pnlTop: TPanel
     Left = 0
     Top = 0
-    Width = 956
+    Width = 957
     Height = 294
     Align = alTop
     Caption = 'pnlTop'
     Constraints.MinHeight = 229
     ShowCaption = False
     TabOrder = 3
+    ExplicitWidth = 954
     object PageControl2: TPageControl
       Left = 1
       Top = 1
-      Width = 954
+      Width = 955
       Height = 292
       ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
+      ExplicitWidth = 952
       object TabSheet1: TTabSheet
         Caption = 'Shooting targets'
         object Label3: TLabel
@@ -668,7 +684,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 16
           Top = 16
-          Width = 914
+          Width = 915
           Height = 105
           Margins.Left = 16
           Margins.Top = 16
@@ -681,7 +697,7 @@ object frmMain: TfrmMain
           object pgctrlProtocolSettings: TPageControl
             Left = 0
             Top = 49
-            Width = 914
+            Width = 915
             Height = 56
             ActivePage = tbshtProtocolDummySettings
             Align = alClient
@@ -798,7 +814,7 @@ object frmMain: TfrmMain
           object Panel1: TPanel
             Left = 0
             Top = 0
-            Width = 914
+            Width = 915
             Height = 49
             Align = alTop
             BevelOuter = bvNone
@@ -872,7 +888,7 @@ object frmMain: TfrmMain
         Caption = 'Mic'
         ImageIndex = 2
         DesignSize = (
-          946
+          947
           264)
         object Label10: TLabel
           Left = 13
