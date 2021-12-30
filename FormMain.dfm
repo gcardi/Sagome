@@ -2,8 +2,8 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'frmMain'
-  ClientHeight = 726
-  ClientWidth = 958
+  ClientHeight = 722
+  ClientWidth = 956
   Color = clBtnFace
   Constraints.MinHeight = 600
   Constraints.MinWidth = 970
@@ -13,7 +13,6 @@ object frmMain: TfrmMain
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   ShowHint = True
   OnShow = FormShow
   PixelsPerInch = 96
@@ -21,7 +20,7 @@ object frmMain: TfrmMain
   object Splitter1: TSplitter
     Left = 0
     Top = 294
-    Width = 958
+    Width = 956
     Height = 3
     Cursor = crVSplit
     Align = alTop
@@ -33,8 +32,8 @@ object frmMain: TfrmMain
   object pnlLog: TPanel
     Left = 0
     Top = 438
-    Width = 958
-    Height = 269
+    Width = 956
+    Height = 265
     Margins.Left = 8
     Margins.Top = 0
     Margins.Right = 8
@@ -48,29 +47,32 @@ object frmMain: TfrmMain
     inline frmeLog1: TfrmeLog
       Left = 0
       Top = 0
-      Width = 958
-      Height = 269
+      Width = 956
+      Height = 265
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 958
-      ExplicitHeight = 269
+      ExplicitWidth = 956
+      ExplicitHeight = 265
       inherited RichEdit1: TRichEdit
-        Width = 958
-        Height = 252
+        Width = 956
+        Height = 248
         ScrollBars = ssBoth
-        ExplicitWidth = 958
-        ExplicitHeight = 252
+        ExplicitWidth = 956
+        ExplicitHeight = 248
       end
       inherited Panel2: TPanel
-        Width = 958
-        ExplicitWidth = 958
+        Width = 956
+        ExplicitWidth = 956
+        inherited SpeedButton1: TSpeedButton
+          Font.Color = clBtnText
+        end
       end
     end
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 707
-    Width = 958
+    Top = 703
+    Width = 956
     Height = 19
     AutoHint = True
     Panels = <>
@@ -79,7 +81,7 @@ object frmMain: TfrmMain
   object pnlTrials: TPanel
     Left = 0
     Top = 297
-    Width = 958
+    Width = 956
     Height = 141
     Align = alTop
     BevelOuter = bvNone
@@ -89,7 +91,7 @@ object frmMain: TfrmMain
     object Panel6: TPanel
       Left = 0
       Top = 0
-      Width = 958
+      Width = 956
       Height = 17
       Align = alTop
       Caption = 'Trials'
@@ -98,7 +100,7 @@ object frmMain: TfrmMain
     object Panel3: TPanel
       Left = 0
       Top = 17
-      Width = 664
+      Width = 662
       Height = 124
       Align = alClient
       BevelOuter = bvNone
@@ -110,7 +112,7 @@ object frmMain: TfrmMain
         Top = 0
         Width = 625
         Height = 124
-        ActivePage = tbshtModbus
+        ActivePage = tbshtPGCMirato
         Align = alLeft
         TabOrder = 0
         object tbshtPGCMirato: TTabSheet
@@ -369,23 +371,92 @@ object frmMain: TfrmMain
               ExplicitWidth = 617
               ExplicitHeight = 79
               inherited tbshrFnReadHoldingRegisters: TTabSheet
+                ExplicitTop = 24
+                ExplicitHeight = 75
+                inherited Label3: TLabel
+                  Width = 39
+                  Height = 13
+                  ExplicitWidth = 39
+                  ExplicitHeight = 13
+                end
+                inherited Label4: TLabel
+                  Width = 54
+                  Height = 13
+                  ExplicitWidth = 54
+                  ExplicitHeight = 13
+                end
                 inherited Button2: TButton
                   Action = actFnReadHoldingRegisters
                   Caption = 'Read'
                 end
               end
               inherited tbshrFnReadInputRegisters: TTabSheet
+                ExplicitTop = 24
+                ExplicitHeight = 75
+                inherited Label12: TLabel
+                  Width = 39
+                  Height = 13
+                  ExplicitWidth = 39
+                  ExplicitHeight = 13
+                end
+                inherited Label13: TLabel
+                  Width = 54
+                  Height = 13
+                  ExplicitWidth = 54
+                  ExplicitHeight = 13
+                end
                 inherited Button6: TButton
                   Action = actFnReadInputRegisters
                   Caption = 'Read'
                 end
               end
               inherited tbshtFnPresetSingleRegister: TTabSheet
+                ExplicitTop = 24
                 ExplicitWidth = 609
                 ExplicitHeight = 51
+                inherited Label8: TLabel
+                  Width = 39
+                  Height = 13
+                  ExplicitWidth = 39
+                  ExplicitHeight = 13
+                end
+                inherited Label9: TLabel
+                  Width = 26
+                  Height = 13
+                  ExplicitWidth = 26
+                  ExplicitHeight = 13
+                end
+                inherited Label2: TLabel
+                  Width = 46
+                  Height = 13
+                  ExplicitWidth = 46
+                  ExplicitHeight = 13
+                end
                 inherited Button3: TButton
                   Action = actFnPresetSingleRegister
                   Caption = 'Preset'
+                end
+              end
+              inherited tbshtFnPresetMultipleRegisters: TTabSheet
+                ExplicitTop = 24
+                ExplicitHeight = 75
+                inherited Label10: TLabel
+                  Width = 39
+                  Height = 13
+                  ExplicitWidth = 39
+                  ExplicitHeight = 13
+                end
+                inherited Label11: TLabel
+                  Width = 23
+                  Height = 13
+                  ExplicitWidth = 23
+                  ExplicitHeight = 13
+                end
+                inherited Label1: TLabel
+                  Width = 46
+                  Height = 13
+                  ExplicitWidth = 46
+                  ExplicitHeight = 13
                 end
               end
             end
@@ -394,7 +465,7 @@ object frmMain: TfrmMain
       end
     end
     object pnlStopwatch: TPanel
-      Left = 664
+      Left = 662
       Top = 17
       Width = 294
       Height = 124
@@ -433,7 +504,7 @@ object frmMain: TfrmMain
   object pnlTop: TPanel
     Left = 0
     Top = 0
-    Width = 958
+    Width = 956
     Height = 294
     Align = alTop
     Caption = 'pnlTop'
@@ -443,7 +514,7 @@ object frmMain: TfrmMain
     object PageControl2: TPageControl
       Left = 1
       Top = 1
-      Width = 956
+      Width = 954
       Height = 292
       ActivePage = TabSheet1
       Align = alClient
@@ -597,7 +668,7 @@ object frmMain: TfrmMain
           AlignWithMargins = True
           Left = 16
           Top = 16
-          Width = 916
+          Width = 914
           Height = 105
           Margins.Left = 16
           Margins.Top = 16
@@ -610,7 +681,7 @@ object frmMain: TfrmMain
           object pgctrlProtocolSettings: TPageControl
             Left = 0
             Top = 49
-            Width = 916
+            Width = 914
             Height = 56
             ActivePage = tbshtProtocolDummySettings
             Align = alClient
@@ -628,14 +699,56 @@ object frmMain: TfrmMain
                 TabOrder = 0
                 ExplicitLeft = 3
                 ExplicitTop = 1
+                inherited Label5: TLabel
+                  Width = 30
+                  Height = 13
+                  ExplicitWidth = 30
+                  ExplicitHeight = 13
+                end
+                inherited Label6: TLabel
+                  Width = 28
+                  Height = 13
+                  ExplicitWidth = 28
+                  ExplicitHeight = 13
+                end
+                inherited Label7: TLabel
+                  Width = 42
+                  Height = 13
+                  ExplicitWidth = 42
+                  ExplicitHeight = 13
+                end
+                inherited Label8: TLabel
+                  Width = 43
+                  Height = 13
+                  ExplicitWidth = 43
+                  ExplicitHeight = 13
+                end
+                inherited Label1: TLabel
+                  Width = 49
+                  Height = 13
+                  ExplicitWidth = 49
+                  ExplicitHeight = 13
+                end
+                inherited cmboxSpeed: TComboBox
+                  Height = 21
+                end
+                inherited cmboxParity: TComboBox
+                  Height = 21
+                end
                 inherited cmboxStopBits: TComboBox
+                  Height = 21
                   TabOrder = 3
                 end
                 inherited cmboxDataBits: TComboBox
+                  Height = 21
                   TabOrder = 4
                 end
                 inherited checkboxCancelTXEcho: TCheckBox
                   TabOrder = 2
+                end
+                inherited cmboxPortName: TComboBox
+                  Height = 21
+                  ExplicitHeight = 21
                 end
               end
             end
@@ -685,7 +798,7 @@ object frmMain: TfrmMain
           object Panel1: TPanel
             Left = 0
             Top = 0
-            Width = 916
+            Width = 914
             Height = 49
             Align = alTop
             BevelOuter = bvNone
@@ -759,7 +872,7 @@ object frmMain: TfrmMain
         Caption = 'Mic'
         ImageIndex = 2
         DesignSize = (
-          948
+          946
           264)
         object Label10: TLabel
           Left = 13
@@ -820,35 +933,95 @@ object frmMain: TfrmMain
               Width = 489
               Height = 218
               AllowPanning = pmNone
+              BackWall.Pen.Color = clSilver
+              BottomWall.Pen.Color = clSilver
+              Foot.Font.Color = clSilver
+              Foot.Font.Name = 'Segoe UI'
+              LeftWall.Pen.Color = clSilver
+              Legend.Font.Color = clSilver
+              Legend.Font.Name = 'Segoe UI'
+              Legend.Title.Font.Color = clSilver
+              Legend.Title.Font.Name = 'Segoe UI'
+              RightWall.Pen.Color = clSilver
+              RightWall.Visible = True
+              SubFoot.Font.Color = clSilver
+              SubFoot.Font.Name = 'Segoe UI'
+              SubTitle.Font.Color = clSilver
+              SubTitle.Font.Name = 'Segoe UI'
+              Title.Font.Color = clSilver
+              Title.Font.Name = 'Segoe UI'
               Title.Text.Strings = (
                 'Freq (Hz)')
               BottomAxis.Automatic = False
               BottomAxis.AutomaticMaximum = False
               BottomAxis.AutomaticMinimum = False
+              BottomAxis.Axis.Color = clSilver
+              BottomAxis.Axis.Width = 0
+              BottomAxis.Axis.Visible = False
+              BottomAxis.LabelsFormat.Font.Color = clSilver
+              BottomAxis.LabelsFormat.Font.Name = 'Segoe UI'
               BottomAxis.LogarithmicBase = 2.000000000000000000
               BottomAxis.Maximum = 11025.000000000000000000
               BottomAxis.Minimum = 60.000000000000000000
+              BottomAxis.Title.Font.Color = clSilver
+              BottomAxis.Title.Font.Name = 'Segoe UI'
+              DepthAxis.Axis.Color = clSilver
+              DepthAxis.LabelsFormat.Font.Color = clSilver
+              DepthAxis.LabelsFormat.Font.Name = 'Segoe UI'
+              DepthAxis.Title.Font.Color = clSilver
+              DepthAxis.Title.Font.Name = 'Segoe UI'
+              DepthTopAxis.Axis.Color = clSilver
+              DepthTopAxis.LabelsFormat.Font.Color = clSilver
+              DepthTopAxis.LabelsFormat.Font.Name = 'Segoe UI'
+              DepthTopAxis.Title.Font.Color = clSilver
+              DepthTopAxis.Title.Font.Name = 'Segoe UI'
+              Frame.Color = clSilver
               LeftAxis.Automatic = False
               LeftAxis.AutomaticMaximum = False
               LeftAxis.AutomaticMinimum = False
+              LeftAxis.Axis.Color = clSilver
+              LeftAxis.Axis.Width = 1
+              LeftAxis.Axis.Visible = False
+              LeftAxis.LabelsFormat.Font.Color = clSilver
+              LeftAxis.LabelsFormat.Font.Name = 'Segoe UI'
               LeftAxis.LabelsSeparation = 20
               LeftAxis.Maximum = 10.000000000000000000
               LeftAxis.Minimum = -100.000000000000000000
               LeftAxis.Title.Caption = 'dB'
+              LeftAxis.Title.Font.Color = clSilver
+              LeftAxis.Title.Font.Name = 'Segoe UI'
               LeftAxis.Title.Visible = False
               Panning.MouseWheel = pmwNone
+              RightAxis.Axis.Color = clSilver
+              RightAxis.LabelsFormat.Font.Color = clSilver
+              RightAxis.LabelsFormat.Font.Name = 'Segoe UI'
+              RightAxis.Title.Font.Color = clSilver
+              RightAxis.Title.Font.Name = 'Segoe UI'
               RightAxis.Visible = False
+              TopAxis.Axis.Color = clSilver
+              TopAxis.LabelsFormat.Font.Color = clSilver
+              TopAxis.LabelsFormat.Font.Name = 'Segoe UI'
+              TopAxis.Title.Font.Color = clSilver
+              TopAxis.Title.Font.Name = 'Segoe UI'
               View3D = False
               Zoom.Allow = False
               Align = alClient
               BevelOuter = bvNone
-              ParentColor = True
+              Color = 3158064
               TabOrder = 0
               DefaultCanvas = 'TGDIPlusCanvas'
-              ColorPaletteIndex = 13
+              PrintMargins = (
+                15
+                27
+                15
+                27)
+              ColorPaletteIndex = 5
               object SeriesFreqCuts: TAreaSeries
+                HoverElement = [heCurrent]
                 Legend.Visible = False
-                SeriesColor = 8454143
+                Marks.Font.Color = clSilver
+                Marks.Font.Name = 'Segoe UI'
+                SeriesColor = 45232
                 ShowInLegend = False
                 AreaChartBrush.Color = clGray
                 AreaChartBrush.BackColor = clDefault
@@ -868,8 +1041,11 @@ object frmMain: TfrmMain
                 Detail = {0000000000}
               end
               object SeriesFreq1: TLineSeries
+                HoverElement = [heCurrent]
                 Legend.Visible = False
-                SeriesColor = clBlue
+                Marks.Font.Color = clSilver
+                Marks.Font.Name = 'Segoe UI'
+                SeriesColor = 16759445
                 ShowInLegend = False
                 Brush.BackColor = clDefault
                 ClickableLine = False
@@ -883,9 +1059,12 @@ object frmMain: TfrmMain
                 YValues.Order = loNone
               end
               object SeriesFreq2: TLineSeries
+                HoverElement = [heCurrent]
                 Legend.Visible = False
                 Active = False
-                SeriesColor = clBlue
+                Marks.Font.Color = clSilver
+                Marks.Font.Name = 'Segoe UI'
+                SeriesColor = 16759445
                 ShowInLegend = False
                 Brush.BackColor = clDefault
                 ClickableLine = False
@@ -897,8 +1076,11 @@ object frmMain: TfrmMain
                 YValues.Order = loNone
               end
               object SeriesdBThreshold: TLineSeries
+                HoverElement = [heCurrent]
                 Legend.Visible = False
-                SeriesColor = clRed
+                Marks.Font.Color = clSilver
+                Marks.Font.Name = 'Segoe UI'
+                SeriesColor = 12566527
                 ShowInLegend = False
                 Brush.BackColor = clDefault
                 ClickableLine = False
@@ -921,33 +1103,91 @@ object frmMain: TfrmMain
               Top = 0
               Width = 489
               Height = 218
+              BackWall.Pen.Color = clSilver
+              BackWall.Size = 1
+              Border.Color = clSilver
+              BottomWall.Size = 1
+              Foot.Font.Color = clSilver
+              Foot.Font.Name = 'Segoe UI'
+              LeftWall.Pen.Color = clSilver
+              LeftWall.Size = 1
+              LeftWall.Visible = False
+              Legend.Font.Color = clSilver
+              Legend.Font.Name = 'Segoe UI'
+              Legend.Title.Font.Color = clSilver
+              Legend.Title.Font.Name = 'Segoe UI'
+              RightWall.Pen.Color = clSilver
+              RightWall.Size = 1
+              SubFoot.Font.Color = clSilver
+              SubFoot.Font.Name = 'Segoe UI'
+              SubTitle.Font.Color = clSilver
+              SubTitle.Font.Name = 'Segoe UI'
+              Title.Font.Color = clSilver
+              Title.Font.Name = 'Segoe UI'
               Title.Text.Strings = (
                 'Time (ms)')
               BottomAxis.Automatic = False
               BottomAxis.AutomaticMaximum = False
               BottomAxis.AutomaticMinimum = False
+              BottomAxis.Axis.Color = clSilver
+              BottomAxis.Axis.Width = 1
+              BottomAxis.LabelsFormat.Font.Color = clSilver
+              BottomAxis.LabelsFormat.Font.Name = 'Segoe UI'
               BottomAxis.LogarithmicBase = 2.000000000000000000
               BottomAxis.Maximum = 512.000000000000000000
+              BottomAxis.Title.Font.Color = clSilver
+              BottomAxis.Title.Font.Name = 'Segoe UI'
+              DepthAxis.Axis.Color = clSilver
+              DepthAxis.LabelsFormat.Font.Color = clSilver
+              DepthAxis.LabelsFormat.Font.Name = 'Segoe UI'
+              DepthAxis.Title.Font.Color = clSilver
+              DepthAxis.Title.Font.Name = 'Segoe UI'
+              DepthTopAxis.Axis.Color = clSilver
+              DepthTopAxis.LabelsFormat.Font.Color = clSilver
+              DepthTopAxis.LabelsFormat.Font.Name = 'Segoe UI'
+              DepthTopAxis.Title.Font.Color = clSilver
+              DepthTopAxis.Title.Font.Name = 'Segoe UI'
+              Frame.Color = clSilver
               LeftAxis.Automatic = False
               LeftAxis.AutomaticMaximum = False
               LeftAxis.AutomaticMinimum = False
+              LeftAxis.Axis.Color = clSilver
+              LeftAxis.Axis.Width = 1
+              LeftAxis.LabelsFormat.Font.Color = clSilver
+              LeftAxis.LabelsFormat.Font.Name = 'Segoe UI'
               LeftAxis.Maximum = 1.000000000000000000
               LeftAxis.Minimum = -1.000000000000000000
+              LeftAxis.Title.Font.Color = clSilver
+              LeftAxis.Title.Font.Name = 'Segoe UI'
+              RightAxis.Axis.Color = clSilver
+              RightAxis.LabelsFormat.Font.Color = clSilver
+              RightAxis.LabelsFormat.Font.Name = 'Segoe UI'
+              RightAxis.Title.Font.Color = clSilver
+              RightAxis.Title.Font.Name = 'Segoe UI'
               RightAxis.Visible = False
+              TopAxis.Axis.Color = clSilver
+              TopAxis.LabelsFormat.Font.Color = clSilver
+              TopAxis.LabelsFormat.Font.Name = 'Segoe UI'
+              TopAxis.Title.Font.Color = clSilver
+              TopAxis.Title.Font.Name = 'Segoe UI'
               View3D = False
               Zoom.Allow = False
               Align = alClient
               BevelOuter = bvNone
-              ParentColor = True
+              Color = 3158064
               TabOrder = 0
               DefaultCanvas = 'TGDIPlusCanvas'
               ColorPaletteIndex = 13
               object SeriesTime1: TLineSeries
+                HoverElement = [heCurrent]
                 Legend.Visible = False
-                SeriesColor = clBlue
+                Marks.Font.Color = clSilver
+                Marks.Font.Name = 'Segoe UI'
+                SeriesColor = 16759445
                 ShowInLegend = False
                 Brush.BackColor = clDefault
                 ClickableLine = False
+                OutLine.Color = clSilver
                 Pointer.Brush.Gradient.EndColor = 10708548
                 Pointer.Gradient.EndColor = 10708548
                 Pointer.InflateMargins = True
@@ -967,12 +1207,16 @@ object frmMain: TfrmMain
                 Detail = {0000000000}
               end
               object SeriesTime2: TLineSeries
+                HoverElement = [heCurrent]
                 Legend.Visible = False
                 Active = False
-                SeriesColor = clBlue
+                Marks.Font.Color = clSilver
+                Marks.Font.Name = 'Segoe UI'
+                SeriesColor = 16759445
                 ShowInLegend = False
                 Brush.BackColor = clDefault
                 ClickableLine = False
+                OutLine.Color = clSilver
                 Pointer.Brush.Gradient.EndColor = 10708548
                 Pointer.Gradient.EndColor = 10708548
                 Pointer.InflateMargins = True
@@ -1479,5 +1723,15 @@ object frmMain: TfrmMain
     OnTimer = tmrReadStatusPortaTimer
     Left = 364
     Top = 468
+  end
+  object TaskDialog1: TTaskDialog
+    Buttons = <>
+    Caption = 'Opzioni di diagnostica aggiuntive abilitate'
+    CommonButtons = [tcbOk]
+    MainIcon = 1
+    RadioButtons = <>
+    Title = 'Attenzione'
+    Left = 541
+    Top = 201
   end
 end

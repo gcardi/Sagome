@@ -6,6 +6,7 @@
 #include <System.SyncObjs.hpp>
 #include <System.DateUtils.hpp>
 #include <System.Win.ComObj.hpp>
+#include <System.IOUtils.hpp>
 
 #include <memory>
 #include <iterator>
@@ -284,6 +285,8 @@ void TfrmMain::RestoreProperties()
 
     RESTORE_LOCAL_PROPERTY( ModbusTesterEnabled );
     RESTORE_LOCAL_PROPERTY( PollingTimerDisabled );
+
+    RESTORE_LOCAL_PROPERTY( SoundFolder );
 }
 //---------------------------------------------------------------------------
 
@@ -1245,7 +1248,9 @@ void __fastcall TfrmMain::actGareResetCycleExecute(TObject *Sender)
 void __fastcall TfrmMain::EnableIfConnectionIsOpenAndEnabled(TObject *Sender)
 {
     TAction& Act = static_cast<TAction&>( *Sender );
-    Act.Enabled = !taskRunning_ && IsConnectionActive() && portaChiusa_ &&
+    Act.Enabled = !taskRunning_ &&
+                  IsConnectionActive() &&
+                  portaChiusa_ &&
                   ( actGareEnb1_5->Checked || actGareEnb6_10->Checked ) &&
                   !tmrGare->Enabled;
 }
@@ -1272,9 +1277,22 @@ TDateTime TfrmMain::EseguiComando( Cmd const& Comando )
         case CmdType::MessaggioSincrono:
             LogMessage( Format( _T( "%s\n" ), ARRAYOFCONST( ( Comando.GetMessage() ) ) ), clGreen );
             {
-                auto const Duration = WavInfo( Comando.GetAuxData() ).GetDuration();
-                ::PlaySound( Comando.GetAuxData(), 0, SND_FILENAME | SND_ASYNC );
-                return IncSecond( Now(), Duration );
+                auto AudioFile = TPath::Combine( SoundFolder, Comando.GetAuxData() );
+//::OutputDebugString( AudioFile.c_str() );
+                if ( FileExists( AudioFile ) ) {
+                    auto const Duration = WavInfo( AudioFile ).GetDuration();
+                    ::PlaySound( AudioFile.c_str(), 0, SND_FILENAME | SND_ASYNC );
+                    return IncSecond( Now(), Duration );
+                }
+                else {
+                    LogMessage(
+                        Format(
+                            _T( "Audio file %s doesn't exists\n" ),
+                            ARRAYOFCONST( ( AudioFile ) )
+                        ),
+                        clRed
+                    );
+                }
             }
         case CmdType::StartAudioSampling:
             waveIn_.reset(
@@ -1981,6 +1999,7 @@ void TfrmMain::ReadStatusPorta()
         ReadHoldingRegisters( ContextDx, 0, 1, &Data );
     }
     portaChiusa_ = Data;
+    //uff
 }
 //---------------------------------------------------------------------------
 
@@ -3112,12 +3131,10 @@ void __fastcall TfrmMain::actWaveSetParametersUpdate(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfrmMain::FormShow(TObject *Sender)
+void TfrmMain::ShowAdditionalSettingsWarning()
 {
     if ( ModbusTesterEnabled || PollingTimerDisabled ) {
-        String Message {
-            _D( "Opzioni aggiuntive di diagnostica abilitate:\r\n\r\n" )
-        };
+        String Message;
 
         if ( ModbusTesterEnabled ) {
             Message += _D( " - Tester del protocollo Modbus\r\n" );
@@ -3127,11 +3144,16 @@ void __fastcall TfrmMain::FormShow(TObject *Sender)
             Message += _D( " - Verifica porta sagome aperta disabilitata\r\n" );
         }
 
-        MessageDlg(
-            Message, TMsgDlgType::mtWarning,
-            TMsgDlgButtons() << TMsgDlgBtn::mbClose, {}
-        );
+        TaskDialog1->Text = Message;
+        TaskDialog1->Execute();
     }
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::FormShow(TObject *Sender)
+{
+    ShowAdditionalSettingsWarning();
+}
+//---------------------------------------------------------------------------
+
 

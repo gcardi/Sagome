@@ -25,6 +25,7 @@
 #include <VCLTee.TeEngine.hpp>
 #include <VCLTee.TeeProcs.hpp>
 #include <Vcl.Imaging.jpeg.hpp>
+#include <Vcl.Dialogs.hpp>
 
 #include <memory>
 #include <cstdint>
@@ -283,6 +284,7 @@ __published:	// IDE-managed Components
     TButton *Button29;
     TPanel *Panel3;
     TPanel *pnlStopwatch;
+    TTaskDialog *TaskDialog1;
     void __fastcall EnableIfConnectionIsClose(TObject *Sender);
     void __fastcall EnableIfConnectionIsOpen(TObject *Sender);
     void __fastcall actCloseExecute(TObject *Sender);
@@ -654,6 +656,8 @@ private:
 
     int pollingTimerDisabled_ { false };
 
+    String soundFolder_;
+
     void AllOff();
     void AllOn();
     void SingleReset();
@@ -780,6 +784,8 @@ private:
     int GetPollingTimerDisabled() const;
     void SetPollingTimerDisabled( int Val );
 
+    void ShowAdditionalSettingsWarning();
+
     __property int PeakDetectionMinDuration = {
         read = peakDetMinDuration_, write = SetPeakDetectionMinDuration
     };
@@ -802,6 +808,10 @@ private:
         write = SetPollingTimerDisabled
     };
 
+    __property String SoundFolder = {
+        read = soundFolder_,
+        write = soundFolder_
+    };
 public:		// User declarations
 	using inherited = TConfigRegistryForm;
 
