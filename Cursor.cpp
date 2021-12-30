@@ -11,13 +11,13 @@
 
 //---------------------------------------------------------------------------
 
-__fastcall TCursorManager::TCursorManager( TCursor Cursor )
+TCursorManager::TCursorManager( TCursor Cursor )
     : restored_( false ), oldCursor_( Set( Cursor ) )
 {
 }
 //---------------------------------------------------------------------------
 
-__fastcall TCursorManager::~TCursorManager() throw()
+TCursorManager::~TCursorManager()
 {
     try {
         if ( !restored_ )
@@ -28,7 +28,7 @@ __fastcall TCursorManager::~TCursorManager() throw()
 }
 //---------------------------------------------------------------------------
 
-TCursor __fastcall TCursorManager::Set( TCursor Cursor )
+TCursor TCursorManager::Set( TCursor Cursor )
 {
     TCursor const CurrentCursor( Screen->Cursor );
     Screen->Cursor = Cursor;
@@ -37,7 +37,7 @@ TCursor __fastcall TCursorManager::Set( TCursor Cursor )
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCursorManager::Restore()
+void TCursorManager::Restore()
 {
     Screen->Cursor = oldCursor_;
     restored_ = false;
