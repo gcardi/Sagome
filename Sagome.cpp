@@ -4,6 +4,8 @@
 #pragma hdrstop
 #include <tchar.h>
 
+#include <Vcl.Styles.hpp>
+#include <Vcl.Themes.hpp>
 #pragma comment( lib, "libfftw3-3" )
 
 //---------------------------------------------------------------------------
@@ -20,6 +22,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
     {
          Application->Initialize();
          Application->MainFormOnTaskBar = true;
+         TStyleManager::TrySetStyle("Charcoal Dark Slate");
          Application->Title = "Sagome";
          Application->CreateForm(__classid(TfrmMain), &frmMain);
          Application->Run();
