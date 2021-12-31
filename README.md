@@ -3,9 +3,7 @@ Programma pilotaggio sagome per Federazione Sammarinese Tiro a Segno
 
 Necessita di FFTW per Windows (le DLL).
 
-Bisogna espandere il file Audio.7z presente in Risorse: per motivi di spazio i .wav non sono salvati singolarmente nel repository remoto.
-
-La strttura delle cartelle deve essere la seguente:
+La struttura delle cartelle deve essere la seguente:
 
 ```
 ├───FFTW
