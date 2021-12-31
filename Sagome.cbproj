@@ -6,8 +6,8 @@
         <AppType>Application</AppType>
         <MainSource>Sagome.cpp</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
@@ -79,6 +79,8 @@
         <BCC_ExtendedErrorInfo>true</BCC_ExtendedErrorInfo>
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\release\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
         <Custom_Styles>&quot;Charcoal Dark Slate|VCLSTYLE|$(BDSCOMMONDIR)\Styles\CharcoalDarkSlate.vsf&quot;</Custom_Styles>
+        <IncludePath>Anafestica\anafestica\;MP3Module\;Scl-VCL-Led-\;Modbus\;Anafestica\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>Anafestica\anafestica\;MP3Module\;Modbus\;Scl-VCL-Led-\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -129,13 +131,13 @@ $(PostBuildEvent)]]></PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <BT_BuildType>Debug</BT_BuildType>
-        <LinkPackageStatics>rtl.lib;vcl.lib;vclactnband.lib;vclx.lib;IndySystem.lib;IndyCore.lib;vclwinx.lib;vclimg.lib;Tee.lib</LinkPackageStatics>
+        <LinkPackageStatics>rtl.lib;vcl.lib;vclactnband.lib;vclx.lib;IndySystem.lib;IndyCore.lib;vclwinx.lib;vclimg.lib;Tee.lib;bindengine.lib</LinkPackageStatics>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <LinkPackageStatics>rtl.lib;vcl.lib;vclactnband.lib;vclx.lib;IndySystem.lib;IndyCore.lib;vclwinx.lib;vclimg.lib</LinkPackageStatics>
+        <LinkPackageStatics>rtl.lib;vcl.lib;vclactnband.lib;vclx.lib;IndySystem.lib;IndyCore.lib;vclwinx.lib;vclimg.lib;Tee.lib;bindengine.lib</LinkPackageStatics>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -144,10 +146,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <BT_BuildType>Debug</BT_BuildType>
-        <LinkPackageStatics>rtl.lib;vcl.lib;vclactnband.lib;vclx.lib;IndySystem.lib;IndyCore.lib;vclwinx.lib;vclimg.lib;Tee.lib</LinkPackageStatics>
+        <LinkPackageStatics>rtl.lib;vcl.lib;vclactnband.lib;vclx.lib;IndySystem.lib;IndyCore.lib;vclwinx.lib;vclimg.lib;Tee.lib;bindengine.lib</LinkPackageStatics>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -155,38 +156,80 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
+        <None Include="Anafestica\anafestica\Cfg.h">
+            <VirtualFolder>{A41E389C-E332-4CF7-9DDC-B7E5C52ECE1D}</VirtualFolder>
+            <BuildOrder>27</BuildOrder>
+        </None>
+        <None Include="Anafestica\anafestica\CfgConts.h">
+            <VirtualFolder>{A41E389C-E332-4CF7-9DDC-B7E5C52ECE1D}</VirtualFolder>
+            <BuildOrder>28</BuildOrder>
+        </None>
+        <None Include="Anafestica\anafestica\CfgItems.h">
+            <VirtualFolder>{A41E389C-E332-4CF7-9DDC-B7E5C52ECE1D}</VirtualFolder>
+            <BuildOrder>29</BuildOrder>
+        </None>
+        <None Include="Anafestica\anafestica\CfgJSON.h">
+            <VirtualFolder>{A41E389C-E332-4CF7-9DDC-B7E5C52ECE1D}</VirtualFolder>
+            <BuildOrder>30</BuildOrder>
+        </None>
+        <None Include="Anafestica\anafestica\CfgJSONSingleton.h">
+            <VirtualFolder>{A41E389C-E332-4CF7-9DDC-B7E5C52ECE1D}</VirtualFolder>
+            <BuildOrder>31</BuildOrder>
+        </None>
+        <None Include="Anafestica\anafestica\CfgNodeValueType.h">
+            <VirtualFolder>{A41E389C-E332-4CF7-9DDC-B7E5C52ECE1D}</VirtualFolder>
+            <BuildOrder>32</BuildOrder>
+        </None>
+        <None Include="Anafestica\anafestica\CfgRegistry.h">
+            <VirtualFolder>{A41E389C-E332-4CF7-9DDC-B7E5C52ECE1D}</VirtualFolder>
+            <BuildOrder>33</BuildOrder>
+        </None>
+        <None Include="Anafestica\anafestica\CfgRegistrySingleton.h">
+            <VirtualFolder>{A41E389C-E332-4CF7-9DDC-B7E5C52ECE1D}</VirtualFolder>
+            <BuildOrder>34</BuildOrder>
+        </None>
+        <None Include="Anafestica\anafestica\CfgXML.h">
+            <VirtualFolder>{A41E389C-E332-4CF7-9DDC-B7E5C52ECE1D}</VirtualFolder>
+            <BuildOrder>35</BuildOrder>
+        </None>
+        <None Include="Anafestica\anafestica\CfgXMLSingleton.h">
+            <VirtualFolder>{A41E389C-E332-4CF7-9DDC-B7E5C52ECE1D}</VirtualFolder>
+            <BuildOrder>36</BuildOrder>
+        </None>
+        <None Include="Anafestica\anafestica\FileVersionInfo.h">
+            <VirtualFolder>{A41E389C-E332-4CF7-9DDC-B7E5C52ECE1D}</VirtualFolder>
+            <BuildOrder>37</BuildOrder>
+        </None>
+        <None Include="Anafestica\anafestica\PersistFormVCL.h">
+            <VirtualFolder>{A41E389C-E332-4CF7-9DDC-B7E5C52ECE1D}</VirtualFolder>
+            <BuildOrder>38</BuildOrder>
+        </None>
         <CppCompile Include="ColorCvt.cpp">
             <VirtualFolder>{62D5FA0C-1AC3-4A73-AFC0-5908F4C6F2DA}</VirtualFolder>
             <DependentOn>ColorCvt.h</DependentOn>
             <BuildOrder>25</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="CommPort.cpp">
-            <VirtualFolder>{87754355-1367-4B4B-A018-4D9B56A0200C}</VirtualFolder>
-            <DependentOn>CommPort.h</DependentOn>
-            <BuildOrder>17</BuildOrder>
         </CppCompile>
         <CppCompile Include="Cursor.cpp">
             <VirtualFolder>{62D5FA0C-1AC3-4A73-AFC0-5908F4C6F2DA}</VirtualFolder>
             <DependentOn>Cursor.h</DependentOn>
             <BuildOrder>17</BuildOrder>
         </CppCompile>
-        <CppCompile Include="ExceptUtils.cpp">
-            <DependentOn>ExceptUtils.h</DependentOn>
-            <BuildOrder>21</BuildOrder>
-        </CppCompile>
         <CppCompile Include="FormMain.cpp">
+            <VirtualFolder>{1167A4B7-E9E6-4B57-83A6-2F0F6C8B60C2}</VirtualFolder>
             <Form>frmMain</Form>
             <FormType>dfm</FormType>
             <DependentOn>FormMain.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
         <CppCompile Include="FormWaveParams.cpp">
+            <VirtualFolder>{1167A4B7-E9E6-4B57-83A6-2F0F6C8B60C2}</VirtualFolder>
             <Form>frmWaveParameters</Form>
             <FormType>dfm</FormType>
             <DependentOn>FormWaveParams.h</DependentOn>
             <BuildOrder>26</BuildOrder>
         </CppCompile>
         <CppCompile Include="FrameLog.cpp">
+            <VirtualFolder>{1167A4B7-E9E6-4B57-83A6-2F0F6C8B60C2}</VirtualFolder>
             <Form>frmeLog</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
@@ -194,6 +237,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>13</BuildOrder>
         </CppCompile>
         <CppCompile Include="FrameModbusFunctions.cpp">
+            <VirtualFolder>{1167A4B7-E9E6-4B57-83A6-2F0F6C8B60C2}</VirtualFolder>
             <Form>frmeModbusFunctions</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
@@ -201,6 +245,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>14</BuildOrder>
         </CppCompile>
         <CppCompile Include="FrameProtocolSettings.cpp">
+            <VirtualFolder>{1167A4B7-E9E6-4B57-83A6-2F0F6C8B60C2}</VirtualFolder>
             <Form>frmeProtocolSettings</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
@@ -208,6 +253,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>16</BuildOrder>
         </CppCompile>
         <CppCompile Include="FrameSerialSettings.cpp">
+            <VirtualFolder>{1167A4B7-E9E6-4B57-83A6-2F0F6C8B60C2}</VirtualFolder>
             <Form>frmeSerialSettings</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
@@ -219,49 +265,60 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>GdiPlusUtils.h</DependentOn>
             <BuildOrder>25</BuildOrder>
         </CppCompile>
-        <CppCompile Include="Led.cpp">
-            <DependentOn>Led.h</DependentOn>
+        <CppCompile Include="Modbus\CommPort.cpp">
+            <VirtualFolder>{4D1BA9A1-1B18-4A82-ADFF-353BE835407F}</VirtualFolder>
+            <DependentOn>Modbus\CommPort.h</DependentOn>
             <BuildOrder>18</BuildOrder>
         </CppCompile>
-        <CppCompile Include="Modbus.cpp">
+        <CppCompile Include="Modbus\Modbus.cpp">
             <VirtualFolder>{4D1BA9A1-1B18-4A82-ADFF-353BE835407F}</VirtualFolder>
-            <DependentOn>Modbus.h</DependentOn>
-            <BuildOrder>11</BuildOrder>
+            <DependentOn>Modbus\Modbus.h</DependentOn>
+            <BuildOrder>19</BuildOrder>
         </CppCompile>
-        <CppCompile Include="ModbusDummy.cpp">
+        <CppCompile Include="Modbus\ModbusDummy.cpp">
             <VirtualFolder>{4D1BA9A1-1B18-4A82-ADFF-353BE835407F}</VirtualFolder>
-            <DependentOn>ModbusDummy.h</DependentOn>
+            <DependentOn>Modbus\ModbusDummy.h</DependentOn>
+            <BuildOrder>20</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Modbus\ModbusRTU.cpp">
+            <VirtualFolder>{4D1BA9A1-1B18-4A82-ADFF-353BE835407F}</VirtualFolder>
+            <DependentOn>Modbus\ModbusRTU.h</DependentOn>
+            <BuildOrder>21</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Modbus\ModbusTCP.cpp">
+            <VirtualFolder>{4D1BA9A1-1B18-4A82-ADFF-353BE835407F}</VirtualFolder>
+            <DependentOn>Modbus\ModbusTCP.h</DependentOn>
+            <BuildOrder>22</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Modbus\ModbusTCP_Indy.cpp">
+            <VirtualFolder>{4D1BA9A1-1B18-4A82-ADFF-353BE835407F}</VirtualFolder>
+            <DependentOn>Modbus\ModbusTCP_Indy.h</DependentOn>
             <BuildOrder>23</BuildOrder>
         </CppCompile>
-        <CppCompile Include="ModbusRTU.cpp">
+        <CppCompile Include="Modbus\ModbusTCP_IP.cpp">
             <VirtualFolder>{4D1BA9A1-1B18-4A82-ADFF-353BE835407F}</VirtualFolder>
-            <DependentOn>ModbusRTU.h</DependentOn>
-            <BuildOrder>12</BuildOrder>
+            <DependentOn>Modbus\ModbusTCP_IP.h</DependentOn>
+            <BuildOrder>24</BuildOrder>
         </CppCompile>
-        <CppCompile Include="ModbusTCP.cpp">
+        <CppCompile Include="Modbus\ModbusUDP.cpp">
             <VirtualFolder>{4D1BA9A1-1B18-4A82-ADFF-353BE835407F}</VirtualFolder>
-            <DependentOn>ModbusTCP.h</DependentOn>
-            <BuildOrder>13</BuildOrder>
+            <DependentOn>Modbus\ModbusUDP.h</DependentOn>
+            <BuildOrder>25</BuildOrder>
         </CppCompile>
-        <CppCompile Include="ModbusTCP_Indy.cpp">
+        <CppCompile Include="Modbus\ModbusUDP_Indy.cpp">
             <VirtualFolder>{4D1BA9A1-1B18-4A82-ADFF-353BE835407F}</VirtualFolder>
-            <DependentOn>ModbusTCP_Indy.h</DependentOn>
-            <BuildOrder>14</BuildOrder>
+            <DependentOn>Modbus\ModbusUDP_Indy.h</DependentOn>
+            <BuildOrder>26</BuildOrder>
         </CppCompile>
-        <CppCompile Include="ModbusTCP_IP.cpp">
+        <CppCompile Include="Modbus\SerEnum.cpp">
             <VirtualFolder>{4D1BA9A1-1B18-4A82-ADFF-353BE835407F}</VirtualFolder>
-            <DependentOn>ModbusTCP_IP.h</DependentOn>
-            <BuildOrder>15</BuildOrder>
+            <DependentOn>Modbus\SerEnum.h</DependentOn>
+            <BuildOrder>27</BuildOrder>
         </CppCompile>
-        <CppCompile Include="ModbusUDP.cpp">
-            <VirtualFolder>{4D1BA9A1-1B18-4A82-ADFF-353BE835407F}</VirtualFolder>
-            <DependentOn>ModbusUDP.h</DependentOn>
-            <BuildOrder>16</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="ModbusUDP_Indy.cpp">
-            <VirtualFolder>{4D1BA9A1-1B18-4A82-ADFF-353BE835407F}</VirtualFolder>
-            <DependentOn>ModbusUDP_Indy.h</DependentOn>
-            <BuildOrder>17</BuildOrder>
+        <CppCompile Include="MP3Module\MP3Mod.cpp">
+            <VirtualFolder>{3644A5B5-64D9-445C-B1E7-8D102B59ED8D}</VirtualFolder>
+            <DependentOn>MP3Module\MP3Mod.h</DependentOn>
+            <BuildOrder>26</BuildOrder>
         </CppCompile>
         <None Include="RegexDefs.h">
             <VirtualFolder>{62D5FA0C-1AC3-4A73-AFC0-5908F4C6F2DA}</VirtualFolder>
@@ -270,10 +327,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="Sagome.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <CppCompile Include="SerEnum.cpp">
-            <VirtualFolder>{62D5FA0C-1AC3-4A73-AFC0-5908F4C6F2DA}</VirtualFolder>
-            <DependentOn>SerEnum.h</DependentOn>
-            <BuildOrder>16</BuildOrder>
+        <CppCompile Include="Scl-VCL-Led-\Led.cpp">
+            <VirtualFolder>{55AA68BC-6F10-47EA-BC96-751D72040492}</VirtualFolder>
+            <DependentOn>Scl-VCL-Led-\Led.h</DependentOn>
+            <BuildOrder>26</BuildOrder>
         </CppCompile>
         <CppCompile Include="Utils.cpp">
             <VirtualFolder>{62D5FA0C-1AC3-4A73-AFC0-5908F4C6F2DA}</VirtualFolder>
@@ -281,6 +338,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>15</BuildOrder>
         </CppCompile>
         <None Include="VclGdiplus.h">
+            <VirtualFolder>{62D5FA0C-1AC3-4A73-AFC0-5908F4C6F2DA}</VirtualFolder>
             <BuildOrder>19</BuildOrder>
         </None>
         <CppCompile Include="WaveIn.cpp">
@@ -293,12 +351,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>WavInfo.h</DependentOn>
             <BuildOrder>24</BuildOrder>
         </CppCompile>
-        <FormResources Include="FormMain.dfm"/>
+        <FormResources Include="FrameSerialSettings.dfm"/>
         <FormResources Include="FormWaveParams.dfm"/>
         <FormResources Include="FrameLog.dfm"/>
         <FormResources Include="FrameModbusFunctions.dfm"/>
         <FormResources Include="FrameProtocolSettings.dfm"/>
-        <FormResources Include="FrameSerialSettings.dfm"/>
+        <FormResources Include="FormMain.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -326,11 +384,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <Source Name="MainSource">Sagome.cpp</Source>
                 </Source>
                 <VFOLDERS>
-                    <VFOLDER ID="{62D5FA0C-1AC3-4A73-AFC0-5908F4C6F2DA}" name="Miscellaneous">
-                        <VFOLDER ID="{87754355-1367-4B4B-A018-4D9B56A0200C}" name="IO"/>
-                    </VFOLDER>
+                    <VFOLDER ID="{55AA68BC-6F10-47EA-BC96-751D72040492}" name="Led"/>
+                    <VFOLDER ID="{62D5FA0C-1AC3-4A73-AFC0-5908F4C6F2DA}" name="Miscellaneous"/>
                     <VFOLDER ID="{4D1BA9A1-1B18-4A82-ADFF-353BE835407F}" name="Modbus"/>
-                    <VFOLDER ID="{3644A5B5-64D9-445C-B1E7-8D102B59ED8D}" name="Wave"/>
+                    <VFOLDER ID="{3644A5B5-64D9-445C-B1E7-8D102B59ED8D}" name="Audio"/>
+                    <VFOLDER ID="{1167A4B7-E9E6-4B57-83A6-2F0F6C8B60C2}" name="GUI"/>
+                    <VFOLDER ID="{A41E389C-E332-4CF7-9DDC-B7E5C52ECE1D}" name="Anafestica"/>
                 </VFOLDERS>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k280.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
@@ -401,6 +460,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName=".\Win64\Debug\Sagome.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>Sagome.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64250.dll" Class="DependencyModule">
                     <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
@@ -426,6 +491,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName=".\Win64\Release\Sagome.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>Sagome.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32250mt.dll" Class="DependencyModule">
                     <Platform Name="Win32">
                         <Overwrite>true</Overwrite>
@@ -433,12 +504,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
                 </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32270mt.dll" Class="DependencyModule">
                     <Platform Name="Win32">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName=".\Win32\Debug\Sagome.tds" Configuration="Debug" Class="DebugSymbols">
-                    <Platform Name="Win32">
-                        <RemoteName>Sagome.tds</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

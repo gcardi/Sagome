@@ -7,24 +7,27 @@
 #include <SysUtils.hpp>
 
 #include "VclGdiplus.h"
-#include "ExceptUtils.h"
-
-#include <boost/utility.hpp>
 
 //---------------------------------------------------------------------------
 namespace GdiplusUtils {
 //---------------------------------------------------------------------------
 
-class GdiPlusSessionManager : public boost::noncopyable {
+class GdiPlusSessionManager {
 public:
     GdiPlusSessionManager();
     ~GdiPlusSessionManager() /* throw() */;
+    GdiPlusSessionManager( GdiPlusSessionManager const & ) = delete;
+    GdiPlusSessionManager& operator=( GdiPlusSessionManager const & ) = delete;
 private:
     Gdiplus::GdiplusStartupInput gdiplusStartupInput_;
     ULONG_PTR gdiplusToken_;
 };
 
-EXCEPTUTILS_MAKE_EXCEPTION_CLASS( EGdiplusExceptionBase, Sysutils::Exception );
+class EGdiplusExceptionBase : public Exception {
+public:
+    template<typename...A>
+    EGdiplusExceptionBase( A&&...Args ) : Exception( std::forward<A>( Args )... ) {}
+};
 
 class EGdiplusException : public EGdiplusExceptionBase {
 public:

@@ -2,7 +2,7 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'frmMain'
-  ClientHeight = 722
+  ClientHeight = 718
   ClientWidth = 957
   Color = clBtnFace
   Constraints.MinHeight = 600
@@ -33,7 +33,7 @@ object frmMain: TfrmMain
     Left = 0
     Top = 438
     Width = 957
-    Height = 265
+    Height = 261
     Margins.Left = 8
     Margins.Top = 0
     Margins.Right = 8
@@ -44,27 +44,27 @@ object frmMain: TfrmMain
     Constraints.MinHeight = 100
     ShowCaption = False
     TabOrder = 0
-    ExplicitWidth = 954
-    ExplicitHeight = 261
+    ExplicitWidth = 955
+    ExplicitHeight = 257
     inline frmeLog1: TfrmeLog
       Left = 0
       Top = 0
       Width = 957
-      Height = 265
+      Height = 261
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 954
-      ExplicitHeight = 261
+      ExplicitWidth = 955
+      ExplicitHeight = 257
       inherited RichEdit1: TRichEdit
         Width = 957
-        Height = 248
+        Height = 244
         ScrollBars = ssBoth
-        ExplicitWidth = 954
-        ExplicitHeight = 244
+        ExplicitWidth = 955
+        ExplicitHeight = 240
       end
       inherited Panel2: TPanel
         Width = 957
-        ExplicitWidth = 954
+        ExplicitWidth = 955
         inherited SpeedButton1: TSpeedButton
           Font.Color = clBtnText
         end
@@ -73,14 +73,14 @@ object frmMain: TfrmMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 703
+    Top = 699
     Width = 957
     Height = 19
     AutoHint = True
     Panels = <>
     SimplePanel = True
-    ExplicitTop = 699
-    ExplicitWidth = 954
+    ExplicitTop = 695
+    ExplicitWidth = 955
   end
   object pnlTrials: TPanel
     Left = 0
@@ -92,7 +92,7 @@ object frmMain: TfrmMain
     Caption = 'pnlTrials'
     ShowCaption = False
     TabOrder = 2
-    ExplicitWidth = 954
+    ExplicitWidth = 955
     object Panel6: TPanel
       Left = 0
       Top = 0
@@ -101,7 +101,7 @@ object frmMain: TfrmMain
       Align = alTop
       Caption = 'Trials'
       TabOrder = 0
-      ExplicitWidth = 954
+      ExplicitWidth = 955
     end
     object Panel3: TPanel
       Left = 0
@@ -113,7 +113,7 @@ object frmMain: TfrmMain
       Caption = 'Panel3'
       ShowCaption = False
       TabOrder = 1
-      ExplicitWidth = 660
+      ExplicitWidth = 661
       object PageControl1: TPageControl
         Left = 0
         Top = 0
@@ -468,8 +468,8 @@ object frmMain: TfrmMain
                   Action = actFnPresetMultipleRegisters
                 end
                 inherited edtPresetMultipleRegistersData: TEdit
-                  Width = 287
-                  ExplicitWidth = 287
+                  Width = 371
+                  ExplicitWidth = 371
                 end
               end
             end
@@ -487,7 +487,7 @@ object frmMain: TfrmMain
       Caption = 'pnlStopwatch'
       ShowCaption = False
       TabOrder = 2
-      ExplicitLeft = 660
+      ExplicitLeft = 661
       DesignSize = (
         294
         124)
@@ -525,7 +525,7 @@ object frmMain: TfrmMain
     Constraints.MinHeight = 229
     ShowCaption = False
     TabOrder = 3
-    ExplicitWidth = 954
+    ExplicitWidth = 955
     object PageControl2: TPageControl
       Left = 1
       Top = 1
@@ -534,7 +534,7 @@ object frmMain: TfrmMain
       ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 952
+      ExplicitWidth = 953
       object TabSheet1: TTabSheet
         Caption = 'Shooting targets'
         object Label3: TLabel
@@ -1258,12 +1258,11 @@ object frmMain: TfrmMain
           object Label11: TLabel
             Left = 0
             Top = 0
-            Width = 71
+            Width = 47
             Height = 13
             Align = alTop
             Alignment = taCenter
             Caption = 'Threshold'
-            ExplicitWidth = 47
           end
           object lblThreshold: TLabel
             Left = 0
@@ -1328,17 +1327,16 @@ object frmMain: TfrmMain
               object Label13: TLabel
                 Left = 0
                 Top = 0
-                Width = 37
+                Width = 18
                 Height = 13
                 Align = alTop
                 Caption = '0dB'
-                ExplicitWidth = 18
               end
               object lblFloor_dB: TLabel
                 AlignWithMargins = True
                 Left = 0
                 Top = 127
-                Width = 37
+                Width = 18
                 Height = 13
                 Margins.Left = 0
                 Margins.Top = 0
@@ -1346,7 +1344,6 @@ object frmMain: TfrmMain
                 Margins.Bottom = 1
                 Align = alBottom
                 Caption = '0dB'
-                ExplicitWidth = 18
               end
             end
           end
@@ -1407,7 +1404,7 @@ object frmMain: TfrmMain
               AlignWithMargins = True
               Left = 2
               Top = 93
-              Width = 40
+              Width = 20
               Height = 13
               Margins.Left = 2
               Margins.Top = 0
@@ -1420,13 +1417,12 @@ object frmMain: TfrmMain
               Font.Name = 'Tahoma'
               Font.Style = []
               ParentFont = False
-              ExplicitWidth = 20
             end
             object lblSpectrogramDuration: TLabel
               AlignWithMargins = True
               Left = 2
               Top = 0
-              Width = 40
+              Width = 20
               Height = 13
               Margins.Left = 2
               Margins.Top = 0
@@ -1439,7 +1435,6 @@ object frmMain: TfrmMain
               Font.Name = 'Tahoma'
               Font.Style = []
               ParentFont = False
-              ExplicitWidth = 20
             end
           end
           object pnlPeaksTimepoint: TPanel
@@ -1737,7 +1732,7 @@ object frmMain: TfrmMain
   object tmrReadStatusPorta: TTimer
     Enabled = False
     OnTimer = tmrReadStatusPortaTimer
-    Left = 364
+    Left = 372
     Top = 468
   end
   object TaskDialog1: TTaskDialog

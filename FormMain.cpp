@@ -15,7 +15,6 @@
 #include <array>
 #include <complex>
 
-
 #include <anafestica/FileVersionInfo.h>
 
 #include "Utils.h"
@@ -28,6 +27,9 @@
 #include "FormMain.h"
 #include "Cursor.h"
 #include "Led.h"
+#include "MP3Mod.h"
+
+//#include <mfidl.h>
 
 #include <Mmsystem.h>
 #include <Dshow.h>
@@ -49,6 +51,8 @@ using std::unique_lock;
 using std::mutex;
 using std::complex;
 using std::swap;
+
+using SclLedCtrl::Led;
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -287,6 +291,8 @@ void TfrmMain::RestoreProperties()
     RESTORE_LOCAL_PROPERTY( PollingTimerDisabled );
 
     RESTORE_LOCAL_PROPERTY( SoundFolder );
+
+    RESTORE_LOCAL_PROPERTY( IgnoreDoor );
 }
 //---------------------------------------------------------------------------
 
@@ -491,7 +497,7 @@ void TfrmMain::ScanSerialPorts()
     auto& PortNameList = frmeSerialSettings1->PortNameList;
     vector<String> Ports;
 
-    Utils::EnumSerialPort( back_inserter( Ports ), EnumSerialPortFnctr<String>() );
+    SvcApp::Utils::EnumSerialPort( back_inserter( Ports ), EnumSerialPortFnctr<String>() );
 
     std::stable_sort( begin( Ports ), end( Ports ), ComNumCmp() );
 
@@ -1250,11 +1256,28 @@ void __fastcall TfrmMain::EnableIfConnectionIsOpenAndEnabled(TObject *Sender)
     TAction& Act = static_cast<TAction&>( *Sender );
     Act.Enabled = !taskRunning_ &&
                   IsConnectionActive() &&
-                  portaChiusa_ &&
+                  ( IgnoreDoor || portaChiusa_ ) &&
                   ( actGareEnb1_5->Checked || actGareEnb6_10->Checked ) &&
                   !tmrGare->Enabled;
 }
 //---------------------------------------------------------------------------
+
+/*
+HRESULT GetSourceDuration(IMFMediaSource *pSource, MFTIME *pDuration)
+{
+    *pDuration = 0;
+
+    IMFPresentationDescriptor *pPD = NULL;
+
+    HRESULT hr = pSource->CreatePresentationDescriptor(&pPD);
+    if (SUCCEEDED(hr))
+    {
+        hr = pPD->GetUINT64(MF_PD_DURATION, (UINT64*)pDuration);
+        pPD->Release();
+    }
+    return hr;
+}
+*/
 
 TDateTime TfrmMain::EseguiComando( Cmd const& Comando )
 {
@@ -1272,17 +1295,42 @@ TDateTime TfrmMain::EseguiComando( Cmd const& Comando )
             break;
         case CmdType::MessaggioAsincrono:
             LogMessage( Format( _T( "%s\n" ), ARRAYOFCONST( ( Comando.GetMessage() ) ) ), clWebOrange );
-            ::PlaySound( Comando.GetAuxData(), 0, SND_FILENAME | SND_ASYNC );
+            {
+                auto AudioFile = TPath::Combine( SoundFolder, Comando.GetAuxData() );
+                if ( FileExists( AudioFile ) ) {
+                    ::PlaySound( AudioFile.c_str(), 0, SND_FILENAME | SND_ASYNC );
+                }
+                else {
+                    LogMessage(
+                        Format(
+                            _T( "Audio file %s doesn't exists\n" ),
+                            ARRAYOFCONST( ( AudioFile ) )
+                        ),
+                        clRed
+                    );
+                }
+            }
             break;
         case CmdType::MessaggioSincrono:
             LogMessage( Format( _T( "%s\n" ), ARRAYOFCONST( ( Comando.GetMessage() ) ) ), clGreen );
             {
                 auto AudioFile = TPath::Combine( SoundFolder, Comando.GetAuxData() );
-//::OutputDebugString( AudioFile.c_str() );
                 if ( FileExists( AudioFile ) ) {
-                    auto const Duration = WavInfo( AudioFile ).GetDuration();
-                    ::PlaySound( AudioFile.c_str(), 0, SND_FILENAME | SND_ASYNC );
-                    return IncSecond( Now(), Duration );
+                    try {
+                        auto const Duration = GetMediaDuration( AudioFile );
+                        ::PlaySound( AudioFile.c_str(), 0, SND_FILENAME | SND_ASYNC );
+                        return IncSecond( Now(), Duration );
+                    }
+                    catch ( Exception const & E ) {
+                        LogException( E );
+                    }
+                    catch ( std::exception const & e ) {
+                        LogStdException( e );
+                    }
+                    catch ( ... ) {
+                        LogUnknownException();
+                    }
+                    return {};
                 }
                 else {
                     LogMessage(
@@ -2031,7 +2079,7 @@ void __fastcall TfrmMain::PaintBox1_5Paint(TObject *Sender)
 {
     TPaintBox& PaintBox = static_cast<TPaintBox&>( *Sender );
 
-    Led Led{ 12 };
+    static Led Led{ 12 };
 
     auto const Gap = ( PaintBox.ClientWidth - Led.GetSize() * 8 ) / 8;
     auto const HalfGap = Gap / 2;
@@ -3133,7 +3181,7 @@ void __fastcall TfrmMain::actWaveSetParametersUpdate(TObject *Sender)
 
 void TfrmMain::ShowAdditionalSettingsWarning()
 {
-    if ( ModbusTesterEnabled || PollingTimerDisabled ) {
+    if ( ModbusTesterEnabled || PollingTimerDisabled || IgnoreDoor ) {
         String Message;
 
         if ( ModbusTesterEnabled ) {
@@ -3142,6 +3190,10 @@ void TfrmMain::ShowAdditionalSettingsWarning()
 
         if ( PollingTimerDisabled ) {
             Message += _D( " - Verifica porta sagome aperta disabilitata\r\n" );
+        }
+
+        if ( IgnoreDoor ) {
+            Message += _D( " - **ATTENZIONE** Contatto porta aperta ignorato\r\n" );
         }
 
         TaskDialog1->Text = Message;
@@ -3156,4 +3208,16 @@ void __fastcall TfrmMain::FormShow(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+double TfrmMain::GetMediaDuration( String AudioFile ) const
+{
+    try {
+        Mp3 mp3;
+        mp3.LoadFromFile( AudioFile );
+        return mp3.GetDuration() / 10000000.0;
+    }
+    catch ( Exception const & E ) {
+        return WavInfo( AudioFile ).GetDuration();
+    }
+}
+//---------------------------------------------------------------------------
 

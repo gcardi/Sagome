@@ -1,0 +1,12 @@
+[submodule "Modbus"]
+	path = Modbus
+	url = https://github.com/gcardi/Modbus.git
+[submodule "Scl-VCL-Led-"]
+	path = Scl-VCL-Led-
+	url = https://github.com/gcardi/Scl-VCL-Led-.git
+[submodule "MP3Module"]
+	path = MP3Module
+	url = https://github.com/gcardi/MP3Module.git
+[submodule "Anafestica"]
+	path = Anafestica
+	url = https://github.com/gcardi/Anafestica.git

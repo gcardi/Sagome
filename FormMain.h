@@ -34,6 +34,7 @@
 #include <atomic>
 
 #include <anafestica/PersistFormVCL.h>
+
 #include <anafestica/CfgRegistrySingleton.h>
 
 #include "fftw3.h"
@@ -375,6 +376,9 @@ private:	// User declarations
     static ModbusProtocolPtr CreateDummyProtocol();
     void ApplyDummyProtoParams( ModbusProtocol& Proto ) const;
 
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wuninitialized"
+
     std::array<ProtoDef, 4> const Protocols{ {
       ProtoDef(
         &TfrmMain::CreateRTUProtocol,
@@ -398,6 +402,8 @@ private:	// User declarations
       ),
 
     } };
+
+    #pragma clang diagnostic pop
 
     ModbusProtocolPtr modbusProto_;
     std::mutex modbusProtoMutex_;
@@ -654,9 +660,11 @@ private:
 
     uint16_t peakMinDetectionTimeDistance_ { 200 };
 
-    int pollingTimerDisabled_ { false };
+    int pollingTimerDisabled_ {};
 
     String soundFolder_;
+
+    int ignoreDoor_ {};
 
     void AllOff();
     void AllOn();
@@ -786,6 +794,8 @@ private:
 
     void ShowAdditionalSettingsWarning();
 
+    double GetMediaDuration( String AudioFile ) const;
+
     __property int PeakDetectionMinDuration = {
         read = peakDetMinDuration_, write = SetPeakDetectionMinDuration
     };
@@ -811,6 +821,11 @@ private:
     __property String SoundFolder = {
         read = soundFolder_,
         write = soundFolder_
+    };
+
+    __property int IgnoreDoor = {
+        read = ignoreDoor_,
+        write = ignoreDoor_
     };
 public:		// User declarations
 	using inherited = TConfigRegistryForm;
