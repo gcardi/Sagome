@@ -19,7 +19,7 @@ object frmMain: TfrmMain
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 294
+    Top = 332
     Width = 957
     Height = 3
     Cursor = crVSplit
@@ -31,9 +31,9 @@ object frmMain: TfrmMain
   end
   object pnlLog: TPanel
     Left = 0
-    Top = 438
+    Top = 476
     Width = 957
-    Height = 261
+    Height = 223
     Margins.Left = 8
     Margins.Top = 0
     Margins.Right = 8
@@ -44,20 +44,21 @@ object frmMain: TfrmMain
     Constraints.MinHeight = 100
     ShowCaption = False
     TabOrder = 0
+    ExplicitTop = 438
     ExplicitWidth = 955
     ExplicitHeight = 257
     inline frmeLog1: TfrmeLog
       Left = 0
       Top = 0
       Width = 957
-      Height = 261
+      Height = 223
       Align = alClient
       TabOrder = 0
       ExplicitWidth = 955
       ExplicitHeight = 257
       inherited RichEdit1: TRichEdit
         Width = 957
-        Height = 244
+        Height = 206
         ScrollBars = ssBoth
         ExplicitWidth = 955
         ExplicitHeight = 240
@@ -84,7 +85,7 @@ object frmMain: TfrmMain
   end
   object pnlTrials: TPanel
     Left = 0
-    Top = 297
+    Top = 335
     Width = 957
     Height = 141
     Align = alTop
@@ -92,6 +93,7 @@ object frmMain: TfrmMain
     Caption = 'pnlTrials'
     ShowCaption = False
     TabOrder = 2
+    ExplicitTop = 297
     ExplicitWidth = 955
     object Panel6: TPanel
       Left = 0
@@ -468,8 +470,8 @@ object frmMain: TfrmMain
                   Action = actFnPresetMultipleRegisters
                 end
                 inherited edtPresetMultipleRegistersData: TEdit
-                  Width = 371
-                  ExplicitWidth = 371
+                  Width = 539
+                  ExplicitWidth = 539
                 end
               end
             end
@@ -519,22 +521,22 @@ object frmMain: TfrmMain
     Left = 0
     Top = 0
     Width = 957
-    Height = 294
+    Height = 332
     Align = alTop
     Caption = 'pnlTop'
     Constraints.MinHeight = 229
     ShowCaption = False
     TabOrder = 3
-    ExplicitWidth = 955
     object PageControl2: TPageControl
       Left = 1
       Top = 1
       Width = 955
-      Height = 292
+      Height = 330
       ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
       ExplicitWidth = 953
+      ExplicitHeight = 292
       object TabSheet1: TTabSheet
         Caption = 'Shooting targets'
         object Label3: TLabel
@@ -889,7 +891,7 @@ object frmMain: TfrmMain
         ImageIndex = 2
         DesignSize = (
           947
-          264)
+          302)
         object Label10: TLabel
           Left = 13
           Top = 48
@@ -899,7 +901,7 @@ object frmMain: TfrmMain
         end
         object pboxFreqCuts: TPaintBox
           Left = 3
-          Top = 229
+          Top = 267
           Width = 381
           Height = 34
           Anchors = [akLeft, akBottom]
@@ -907,6 +909,7 @@ object frmMain: TfrmMain
           OnMouseMove = pboxFreqCutsMouseMove
           OnMouseUp = pboxFreqCutsMouseUp
           OnPaint = pboxFreqCutsPaint
+          ExplicitTop = 229
         end
         object comboboxAudioSources: TComboBox
           Left = 13
@@ -936,18 +939,19 @@ object frmMain: TfrmMain
           Left = 436
           Top = 10
           Width = 497
-          Height = 246
+          Height = 284
           ActivePage = tbshtViewerFreq
           Anchors = [akLeft, akTop, akBottom]
           Constraints.MaxWidth = 640
           TabOrder = 3
+          ExplicitHeight = 246
           object tbshtViewerFreq: TTabSheet
             Caption = 'Frequency domain'
             object chartFreq: TChart
               Left = 0
               Top = 0
               Width = 489
-              Height = 218
+              Height = 256
               AllowPanning = pmNone
               BackWall.Pen.Color = clSilver
               BottomWall.Pen.Color = clSilver
@@ -1025,6 +1029,7 @@ object frmMain: TfrmMain
               BevelOuter = bvNone
               Color = 3158064
               TabOrder = 0
+              ExplicitHeight = 218
               DefaultCanvas = 'TGDIPlusCanvas'
               PrintMargins = (
                 15
@@ -1118,7 +1123,7 @@ object frmMain: TfrmMain
               Left = 0
               Top = 0
               Width = 489
-              Height = 218
+              Height = 256
               BackWall.Pen.Color = clSilver
               BackWall.Size = 1
               Border.Color = clSilver
@@ -1192,6 +1197,7 @@ object frmMain: TfrmMain
               BevelOuter = bvNone
               Color = 3158064
               TabOrder = 0
+              ExplicitHeight = 218
               DefaultCanvas = 'TGDIPlusCanvas'
               ColorPaletteIndex = 13
               object SeriesTime1: TLineSeries
@@ -1249,20 +1255,22 @@ object frmMain: TfrmMain
           Left = 353
           Top = 63
           Width = 71
-          Height = 167
+          Height = 205
           Anchors = [akLeft, akTop, akBottom]
           BevelOuter = bvNone
           Caption = 'pnlThreshold'
           ShowCaption = False
           TabOrder = 4
+          ExplicitHeight = 167
           object Label11: TLabel
             Left = 0
             Top = 0
-            Width = 47
+            Width = 71
             Height = 13
             Align = alTop
             Alignment = taCenter
             Caption = 'Threshold'
+            ExplicitWidth = 47
           end
           object lblThreshold: TLabel
             Left = 0
@@ -1281,18 +1289,19 @@ object frmMain: TfrmMain
             Left = 0
             Top = 26
             Width = 71
-            Height = 141
+            Height = 179
             Align = alClient
             BevelOuter = bvNone
             Caption = 'Panel4'
             FullRepaint = False
             ShowCaption = False
             TabOrder = 0
+            ExplicitHeight = 141
             object pboxSpectrogramGradientIndicator: TPaintBox
               Left = 0
               Top = 0
               Width = 13
-              Height = 141
+              Height = 179
               Align = alLeft
               OnMouseDown = pboxSpectrogramGradientIndicatorMouseDown
               OnMouseMove = pboxSpectrogramGradientIndicatorMouseMove
@@ -1305,7 +1314,7 @@ object frmMain: TfrmMain
               Left = 15
               Top = 6
               Width = 17
-              Height = 129
+              Height = 167
               Margins.Left = 2
               Margins.Top = 6
               Margins.Right = 2
@@ -1318,25 +1327,27 @@ object frmMain: TfrmMain
               Left = 34
               Top = 0
               Width = 37
-              Height = 141
+              Height = 179
               Align = alClient
               BevelOuter = bvNone
               Caption = 'Panel7'
               ShowCaption = False
               TabOrder = 0
+              ExplicitHeight = 141
               object Label13: TLabel
                 Left = 0
                 Top = 0
-                Width = 18
+                Width = 37
                 Height = 13
                 Align = alTop
                 Caption = '0dB'
+                ExplicitWidth = 18
               end
               object lblFloor_dB: TLabel
                 AlignWithMargins = True
                 Left = 0
-                Top = 127
-                Width = 18
+                Top = 165
+                Width = 37
                 Height = 13
                 Margins.Left = 0
                 Margins.Top = 0
@@ -1344,6 +1355,8 @@ object frmMain: TfrmMain
                 Margins.Bottom = 1
                 Align = alBottom
                 Caption = '0dB'
+                ExplicitTop = 127
+                ExplicitWidth = 18
               end
             end
           end
@@ -1352,7 +1365,7 @@ object frmMain: TfrmMain
           Left = 13
           Top = 96
           Width = 337
-          Height = 129
+          Height = 167
           Anchors = [akLeft, akTop, akBottom]
           BevelKind = bkFlat
           BevelOuter = bvNone
@@ -1361,11 +1374,12 @@ object frmMain: TfrmMain
           ShowCaption = False
           TabOrder = 5
           OnResize = pnlSpectrogramResize
+          ExplicitHeight = 129
           object pboxSpectrogram: TPaintBox
             Left = 34
             Top = 16
             Width = 256
-            Height = 109
+            Height = 147
             Align = alClient
             OnPaint = pboxSpectrogramPaint
             ExplicitLeft = 46
@@ -1388,7 +1402,7 @@ object frmMain: TfrmMain
             Left = 291
             Top = 16
             Width = 42
-            Height = 109
+            Height = 147
             Margins.Left = 1
             Margins.Top = 0
             Margins.Right = 0
@@ -1400,11 +1414,12 @@ object frmMain: TfrmMain
             ParentBackground = False
             ShowCaption = False
             TabOrder = 1
+            ExplicitHeight = 109
             object Label12: TLabel
               AlignWithMargins = True
               Left = 2
-              Top = 93
-              Width = 20
+              Top = 131
+              Width = 40
               Height = 13
               Margins.Left = 2
               Margins.Top = 0
@@ -1417,12 +1432,14 @@ object frmMain: TfrmMain
               Font.Name = 'Tahoma'
               Font.Style = []
               ParentFont = False
+              ExplicitTop = 93
+              ExplicitWidth = 20
             end
             object lblSpectrogramDuration: TLabel
               AlignWithMargins = True
               Left = 2
               Top = 0
-              Width = 20
+              Width = 40
               Height = 13
               Margins.Left = 2
               Margins.Top = 0
@@ -1435,6 +1452,7 @@ object frmMain: TfrmMain
               Font.Name = 'Tahoma'
               Font.Style = []
               ParentFont = False
+              ExplicitWidth = 20
             end
           end
           object pnlPeaksTimepoint: TPanel
@@ -1442,7 +1460,7 @@ object frmMain: TfrmMain
             Left = 0
             Top = 16
             Width = 33
-            Height = 109
+            Height = 147
             Margins.Left = 0
             Margins.Top = 0
             Margins.Right = 1
@@ -1455,11 +1473,12 @@ object frmMain: TfrmMain
             ParentBackground = False
             ShowCaption = False
             TabOrder = 2
+            ExplicitHeight = 109
             object pboxPeaksTimepoint: TPaintBox
               Left = 0
               Top = 0
               Width = 33
-              Height = 109
+              Height = 147
               Align = alClient
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
@@ -1469,6 +1488,7 @@ object frmMain: TfrmMain
               ParentFont = False
               OnPaint = pboxPeaksTimepointPaint
               ExplicitWidth = 28
+              ExplicitHeight = 109
             end
           end
         end
