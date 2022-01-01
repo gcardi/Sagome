@@ -10,3 +10,6 @@
 [submodule "Anafestica"]
 	path = Anafestica
 	url = https://github.com/gcardi/Anafestica.git
+[submodule "WaveIn"]
+	path = WaveIn
+	url = https://github.com/gcardi/WaveIn.git
