@@ -2,7 +2,7 @@ object frmWaveParameters: TfrmWaveParameters
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'frmWaveParameters'
+  Caption = 'Shot detection parameters'
   ClientHeight = 202
   ClientWidth = 269
   Color = clBtnFace
@@ -11,7 +11,6 @@ object frmWaveParameters: TfrmWaveParameters
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poMainFormCenter
   PixelsPerInch = 96
   TextHeight = 13
