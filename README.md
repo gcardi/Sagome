@@ -1,5 +1,5 @@
 # Sagome
-Programma pilotaggio sagome per Federazione Sammarinese Tiro a Segno
+Applicazione per il pilotaggio delle sagome del poligono di tiro per la "Federazione Sammarinese Tiro a Segno".
 
 Necessita di FFTW per Windows (solo le DLL) (http://www.fftw.org/download.html)
 
