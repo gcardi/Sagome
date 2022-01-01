@@ -79,8 +79,8 @@
         <BCC_ExtendedErrorInfo>true</BCC_ExtendedErrorInfo>
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\release\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
         <Custom_Styles>&quot;Charcoal Dark Slate|VCLSTYLE|$(BDSCOMMONDIR)\Styles\CharcoalDarkSlate.vsf&quot;</Custom_Styles>
-        <IncludePath>Anafestica\anafestica\;MP3Module\;Scl-VCL-Led-\;Modbus\;Anafestica\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>Anafestica\anafestica\;MP3Module\;Modbus\;Scl-VCL-Led-\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>WaveIn\;Anafestica\anafestica\;MP3Module\;Scl-VCL-Led-\;Modbus\;Anafestica\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>WaveIn\;Anafestica\anafestica\;MP3Module\;Modbus\;Scl-VCL-Led-\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -341,10 +341,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <VirtualFolder>{62D5FA0C-1AC3-4A73-AFC0-5908F4C6F2DA}</VirtualFolder>
             <BuildOrder>19</BuildOrder>
         </None>
-        <CppCompile Include="WaveIn.cpp">
+        <CppCompile Include="WaveIn\WaveIn.cpp">
             <VirtualFolder>{3644A5B5-64D9-445C-B1E7-8D102B59ED8D}</VirtualFolder>
-            <DependentOn>WaveIn.h</DependentOn>
-            <BuildOrder>22</BuildOrder>
+            <DependentOn>WaveIn\WaveIn.h</DependentOn>
+            <BuildOrder>38</BuildOrder>
         </CppCompile>
         <CppCompile Include="WavInfo.cpp">
             <VirtualFolder>{3644A5B5-64D9-445C-B1E7-8D102B59ED8D}</VirtualFolder>
@@ -504,6 +504,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
                 </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32270mt.dll" Class="DependencyModule">
                     <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName=".\Win32\Debug\Sagome.tds" Configuration="Debug" Class="DebugSymbols">
+                    <Platform Name="Win32">
+                        <RemoteName>Sagome.tds</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
