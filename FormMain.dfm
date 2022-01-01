@@ -44,9 +44,8 @@ object frmMain: TfrmMain
     Constraints.MinHeight = 100
     ShowCaption = False
     TabOrder = 0
-    ExplicitTop = 438
     ExplicitWidth = 955
-    ExplicitHeight = 257
+    ExplicitHeight = 219
     inline frmeLog1: TfrmeLog
       Left = 0
       Top = 0
@@ -55,13 +54,13 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 0
       ExplicitWidth = 955
-      ExplicitHeight = 257
+      ExplicitHeight = 219
       inherited RichEdit1: TRichEdit
         Width = 957
         Height = 206
         ScrollBars = ssBoth
         ExplicitWidth = 955
-        ExplicitHeight = 240
+        ExplicitHeight = 202
       end
       inherited Panel2: TPanel
         Width = 957
@@ -93,7 +92,6 @@ object frmMain: TfrmMain
     Caption = 'pnlTrials'
     ShowCaption = False
     TabOrder = 2
-    ExplicitTop = 297
     ExplicitWidth = 955
     object Panel6: TPanel
       Left = 0
@@ -527,6 +525,7 @@ object frmMain: TfrmMain
     Constraints.MinHeight = 229
     ShowCaption = False
     TabOrder = 3
+    ExplicitWidth = 955
     object PageControl2: TPageControl
       Left = 1
       Top = 1
@@ -536,7 +535,6 @@ object frmMain: TfrmMain
       Align = alClient
       TabOrder = 0
       ExplicitWidth = 953
-      ExplicitHeight = 292
       object TabSheet1: TTabSheet
         Caption = 'Shooting targets'
         object Label3: TLabel
@@ -1265,12 +1263,11 @@ object frmMain: TfrmMain
           object Label11: TLabel
             Left = 0
             Top = 0
-            Width = 71
+            Width = 47
             Height = 13
             Align = alTop
             Alignment = taCenter
             Caption = 'Threshold'
-            ExplicitWidth = 47
           end
           object lblThreshold: TLabel
             Left = 0
@@ -1337,17 +1334,16 @@ object frmMain: TfrmMain
               object Label13: TLabel
                 Left = 0
                 Top = 0
-                Width = 37
+                Width = 18
                 Height = 13
                 Align = alTop
                 Caption = '0dB'
-                ExplicitWidth = 18
               end
               object lblFloor_dB: TLabel
                 AlignWithMargins = True
                 Left = 0
                 Top = 165
-                Width = 37
+                Width = 18
                 Height = 13
                 Margins.Left = 0
                 Margins.Top = 0
@@ -1355,8 +1351,6 @@ object frmMain: TfrmMain
                 Margins.Bottom = 1
                 Align = alBottom
                 Caption = '0dB'
-                ExplicitTop = 127
-                ExplicitWidth = 18
               end
             end
           end
@@ -1419,7 +1413,7 @@ object frmMain: TfrmMain
               AlignWithMargins = True
               Left = 2
               Top = 131
-              Width = 40
+              Width = 20
               Height = 13
               Margins.Left = 2
               Margins.Top = 0
@@ -1432,14 +1426,12 @@ object frmMain: TfrmMain
               Font.Name = 'Tahoma'
               Font.Style = []
               ParentFont = False
-              ExplicitTop = 93
-              ExplicitWidth = 20
             end
             object lblSpectrogramDuration: TLabel
               AlignWithMargins = True
               Left = 2
               Top = 0
-              Width = 40
+              Width = 20
               Height = 13
               Margins.Left = 2
               Margins.Top = 0
@@ -1452,7 +1444,6 @@ object frmMain: TfrmMain
               Font.Name = 'Tahoma'
               Font.Style = []
               ParentFont = False
-              ExplicitWidth = 20
             end
           end
           object pnlPeaksTimepoint: TPanel

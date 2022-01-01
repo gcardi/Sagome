@@ -6,8 +6,8 @@
         <AppType>Application</AppType>
         <MainSource>Sagome.cpp</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <Config Condition="'$(Config)'==''">Release</Config>
+        <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
@@ -81,6 +81,7 @@
         <Custom_Styles>&quot;Charcoal Dark Slate|VCLSTYLE|$(BDSCOMMONDIR)\Styles\CharcoalDarkSlate.vsf&quot;</Custom_Styles>
         <IncludePath>WaveIn\;Anafestica\anafestica\;MP3Module\;Scl-VCL-Led-\;Modbus\;Anafestica\;$(IncludePath)</IncludePath>
         <ILINK_LibraryPath>WaveIn\;Anafestica\anafestica\;MP3Module\;Modbus\;Scl-VCL-Led-\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <BCC_UseSplitDWARF>true</BCC_UseSplitDWARF>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>

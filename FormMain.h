@@ -42,7 +42,7 @@
 #include "WaveIn.h"
 #include "Modbus.h"
 #include "GdiPlusUtils.h"
-#include "CArray.h"
+//#include "CArray.h"
 
 //---------------------------------------------------------------------------
 
