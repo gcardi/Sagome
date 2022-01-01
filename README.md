@@ -18,3 +18,10 @@ La struttura delle cartelle deve essere la seguente:
     └───MP3 (estensione .wav, ma contengono media in formato MP3)
 ```
 
+## Screenshots
+
+<a href="https://ibb.co/t2yM1MP"><img src="https://i.ibb.co/n1hsKs8/Sagome-1.png" alt="Sagome-1" border="0"></a>
+
+<a href="https://ibb.co/0fkxHC5"><img src="https://i.ibb.co/brxkcst/Sagome-2.png" alt="Sagome-2" border="0"></a>
+
+<a href="https://ibb.co/Cv2cV76"><img src="https://i.ibb.co/L65F9tr/Sagome-3.png" alt="Sagome-3" border="0"></a>
