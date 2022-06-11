@@ -406,7 +406,7 @@ void TfrmMain::AppendAudioSources( TStrings& List )
     _di_IMoniker DeviceMoniker;
 
     ULONG cFetched;
-    while ( EnumCat->Next( 1, &DeviceMoniker, &cFetched ) == S_OK ) {
+    while ( EnumCat && EnumCat->Next( 1, &DeviceMoniker, &cFetched ) == S_OK ) {
         _di_IPropertyBag PropBag;
 
         //bind the properties of the moniker
