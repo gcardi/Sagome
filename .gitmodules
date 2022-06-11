@@ -13,3 +13,6 @@
 [submodule "WaveIn"]
 	path = WaveIn
 	url = https://github.com/gcardi/WaveIn.git
+[submodule "fftw3"]
+	path = fftw3
+	url = https://github.com/FFTW/fftw3
