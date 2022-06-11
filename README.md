@@ -1,6 +1,12 @@
 # Sagome
 Applicazione per il pilotaggio delle sagome del poligono di tiro per la "Federazione Sammarinese Tiro a Segno".
 
+Clonare il repository usando 'recurse-submodules'
+
+```
+git clone --recurse-submodules https://github.com/gcardi/Sagome.git
+```
+
 Necessita di FFTW per Windows (solo le DLL) (http://www.fftw.org/download.html)
 
 La struttura delle cartelle deve essere la seguente:
