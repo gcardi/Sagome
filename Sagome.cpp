@@ -22,7 +22,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
     {
          Application->Initialize();
          Application->MainFormOnTaskBar = true;
-         TStyleManager::TrySetStyle("Charcoal Dark Slate");
          Application->Title = "Sagome";
          Application->CreateForm(__classid(TfrmMain), &frmMain);
          Application->Run();

@@ -43,8 +43,6 @@ object frmMain: TfrmMain
     Constraints.MinHeight = 100
     ShowCaption = False
     TabOrder = 0
-    ExplicitWidth = 955
-    ExplicitHeight = 219
     inline frmeLog1: TfrmeLog
       Left = 0
       Top = 0
@@ -52,18 +50,18 @@ object frmMain: TfrmMain
       Height = 223
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 955
-      ExplicitHeight = 219
+      ExplicitWidth = 957
+      ExplicitHeight = 223
       inherited RichEdit1: TRichEdit
         Width = 957
         Height = 206
         ScrollBars = ssBoth
-        ExplicitWidth = 955
-        ExplicitHeight = 202
+        ExplicitWidth = 957
+        ExplicitHeight = 206
       end
       inherited Panel2: TPanel
         Width = 957
-        ExplicitWidth = 955
+        ExplicitWidth = 957
         inherited SpeedButton1: TSpeedButton
           Font.Color = clBtnText
         end
@@ -78,8 +76,6 @@ object frmMain: TfrmMain
     AutoHint = True
     Panels = <>
     SimplePanel = True
-    ExplicitTop = 695
-    ExplicitWidth = 955
   end
   object pnlTrials: TPanel
     Left = 0
@@ -91,7 +87,6 @@ object frmMain: TfrmMain
     Caption = 'pnlTrials'
     ShowCaption = False
     TabOrder = 2
-    ExplicitWidth = 955
     object Panel6: TPanel
       Left = 0
       Top = 0
@@ -100,7 +95,6 @@ object frmMain: TfrmMain
       Align = alTop
       Caption = 'Trials'
       TabOrder = 0
-      ExplicitWidth = 955
     end
     object Panel3: TPanel
       Left = 0
@@ -112,7 +106,6 @@ object frmMain: TfrmMain
       Caption = 'Panel3'
       ShowCaption = False
       TabOrder = 1
-      ExplicitWidth = 661
       object PageControl1: TPageControl
         Left = 0
         Top = 0
@@ -486,7 +479,6 @@ object frmMain: TfrmMain
       Caption = 'pnlStopwatch'
       ShowCaption = False
       TabOrder = 2
-      ExplicitLeft = 661
       DesignSize = (
         294
         124)
@@ -524,7 +516,6 @@ object frmMain: TfrmMain
     Constraints.MinHeight = 229
     ShowCaption = False
     TabOrder = 3
-    ExplicitWidth = 955
     object PageControl2: TPageControl
       Left = 1
       Top = 1
@@ -533,7 +524,6 @@ object frmMain: TfrmMain
       ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 953
       object TabSheet1: TTabSheet
         Caption = 'Shooting targets'
         object Label3: TLabel
@@ -1259,12 +1249,11 @@ object frmMain: TfrmMain
           object Label11: TLabel
             Left = 0
             Top = 0
-            Width = 71
+            Width = 47
             Height = 13
             Align = alTop
             Alignment = taCenter
             Caption = 'Threshold'
-            ExplicitWidth = 47
           end
           object lblThreshold: TLabel
             Left = 0
@@ -1329,17 +1318,16 @@ object frmMain: TfrmMain
               object Label13: TLabel
                 Left = 0
                 Top = 0
-                Width = 37
+                Width = 18
                 Height = 13
                 Align = alTop
                 Caption = '0dB'
-                ExplicitWidth = 18
               end
               object lblFloor_dB: TLabel
                 AlignWithMargins = True
                 Left = 0
                 Top = 165
-                Width = 37
+                Width = 18
                 Height = 13
                 Margins.Left = 0
                 Margins.Top = 0
@@ -1347,7 +1335,6 @@ object frmMain: TfrmMain
                 Margins.Bottom = 1
                 Align = alBottom
                 Caption = '0dB'
-                ExplicitWidth = 18
               end
             end
           end
@@ -1408,7 +1395,7 @@ object frmMain: TfrmMain
               AlignWithMargins = True
               Left = 2
               Top = 131
-              Width = 40
+              Width = 20
               Height = 13
               Margins.Left = 2
               Margins.Top = 0
@@ -1421,13 +1408,12 @@ object frmMain: TfrmMain
               Font.Name = 'Tahoma'
               Font.Style = []
               ParentFont = False
-              ExplicitWidth = 20
             end
             object lblSpectrogramDuration: TLabel
               AlignWithMargins = True
               Left = 2
               Top = 0
-              Width = 40
+              Width = 20
               Height = 13
               Margins.Left = 2
               Margins.Top = 0
@@ -1440,7 +1426,6 @@ object frmMain: TfrmMain
               Font.Name = 'Tahoma'
               Font.Style = []
               ParentFont = False
-              ExplicitWidth = 20
             end
           end
           object pnlPeaksTimepoint: TPanel
