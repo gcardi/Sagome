@@ -677,7 +677,7 @@ void __fastcall TfrmMain::EnableIfConnectionIsClose(TObject *Sender)
 void __fastcall TfrmMain::EnableIfConnectionIsOpen(TObject *Sender)
 {
     TAction& Act = static_cast<TAction&>( *Sender );
-    Act.Enabled = IsConnectionActive();
+    Act.Enabled = !taskRunning_ && IsConnectionActive();
 }
 //---------------------------------------------------------------------------
 
