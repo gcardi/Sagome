@@ -9,6 +9,7 @@ html/
 latex/
 FFTW/
 Risorse/*.wav
+Setup/
 *.bak
 *.dcp
 *.dcu
