@@ -373,6 +373,11 @@ private:	// User declarations
     static ModbusProtocolPtr CreateDummyProtocol();
     void ApplyDummyProtoParams( ModbusProtocol& Proto ) const;
 
+    // I TTabSheet* sono popolati dallo streaming DFM nella base class prima
+    // che il default member initializer di Protocols venga eseguito; clang
+    // non lo sa e segnala falsi positivi -Wuninitialized.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wuninitialized"
     std::array<ProtoDef, 4> const Protocols{ {
       ProtoDef(
         &TfrmMain::CreateRTUProtocol,
@@ -396,6 +401,7 @@ private:	// User declarations
       ),
 
     } };
+#pragma clang diagnostic pop
 
     ModbusProtocolPtr modbusProto_;
     std::mutex modbusProtoMutex_;
