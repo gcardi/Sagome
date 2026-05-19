@@ -221,7 +221,7 @@ void TfrmMain::Destroy()
 
 String TfrmMain::GetModuleFileName()
 {
-    return GetModuleName( reinterpret_cast<unsigned>( HInstance ) );
+	return GetModuleName( reinterpret_cast<NativeUInt>( HInstance ) );
 }
 //---------------------------------------------------------------------------
 
@@ -734,7 +734,7 @@ void __fastcall TfrmMain::actOpenExecute(TObject *Sender)
         _T( "Open %s%s%s\n" ),
         ARRAYOFCONST( (
             modbusProto_->GetProtocolName()
-          , modbusProto_->GetProtocolParamsStr().IsEmpty ? _T( "" ) : _T( " on " )
+		  , modbusProto_->GetProtocolParamsStr().IsEmpty() ? _T( "" ) : _T( " on " )
           , modbusProto_->GetProtocolParamsStr()
         ) )
     );
@@ -753,7 +753,7 @@ void TfrmMain::Close()
             _T( "Close %s%s%s\n" ),
             ARRAYOFCONST( (
                 modbusProto_->GetProtocolName()
-              , modbusProto_->GetProtocolParamsStr().IsEmpty ? _T( "" ) : _T( " on " )
+			  , modbusProto_->GetProtocolParamsStr().IsEmpty() ? _T( "" ) : _T( " on " )
               , modbusProto_->GetProtocolParamsStr()
             ) )
         );
@@ -1104,7 +1104,7 @@ public:
     AtomicFlagMngr( AtomicFlagMngr const & ) = delete;
     AtomicFlagMngr& operator=( AtomicFlagMngr const & ) = delete;
     AtomicFlagMngr( AtomicFlagMngr&& ) = default;
-    AtomicFlagMngr& operator=( AtomicFlagMngr&& ) = default;
+    //AtomicFlagMngr& operator=( AtomicFlagMngr&& ) = default;
 private:
     std::atomic<bool>& flag_;
 };
@@ -1309,8 +1309,22 @@ void __fastcall TfrmMain::tmrGareTimer(TObject *Sender)
     auto NowTime = Now();
     if ( NowTime > deadLine_ ) {
         if ( tmrGare->Tag < stepCount_ ) {
-            deadLine_ = EseguiComando( cmds_[tmrGare->Tag] );
-            tmrGare->Tag = tmrGare->Tag + 1;
+            try {
+                deadLine_ = EseguiComando( cmds_[tmrGare->Tag] );
+                tmrGare->Tag = tmrGare->Tag + 1;
+            }
+            catch ( Exception const & E ) {
+                StopGara( true );
+                LogException( E );
+            }
+            catch ( std::exception const & e ) {
+                StopGara( true );
+                LogStdException( e );
+            }
+            catch ( ... ) {
+                StopGara( true );
+                LogUnknownException();
+            }
         }
         else {
             tmrGare->Enabled = false;
@@ -1355,12 +1369,17 @@ void TfrmMain::StartGara( Cmd const * Cmds, size_t CmdsCnt )
 }
 //---------------------------------------------------------------------------
 
-void TfrmMain::StopGara()
+void TfrmMain::StopGara( bool Error )
 {
     waveIn_.reset();
     if ( tmrGare->Enabled ) {
         tmrGare->Enabled = false;
-        LogMessage( _T( "FERMATO\r\n" ), clPurple );
+        if ( Error ) {
+            LogMessage( _T( "ERRORE\r\n" ), clRed );
+        }
+        else {
+            LogMessage( _T( "FERMATO\r\n" ), clPurple );
+        }
         SetStopwatchColor( clRed );
     }
 }
@@ -1394,7 +1413,7 @@ static constexpr uint16_t Time60sec =
 #endif
 ;
 static constexpr uint16_t AttesaChiusura = 3;
-static constexpr uint16_t AttenzioneAttesa = 2;
+static constexpr uint16_t AttenzioneAttesa = 0;
 
 static constexpr LPCTSTR ApertoSubitoTxt = _T( "Aperto subito" );
 static constexpr LPCTSTR Attesa60SecTxt = _T( "Attesa 60 sec" );
@@ -1435,7 +1454,7 @@ void __fastcall TfrmMain::actGareProssimaPGCMiratoStartExecute(TObject *Sender)
         {
             CmdType::MessaggioSincrono, 0,
             _T( "Per la prossima serie di gara di tiro mirato in 300 secondi, caricare." ),
-                _T( "PGC_Mirato_11.wav" )
+            _T( "PGC_Mirato_11.wav" )
         },
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
         { CmdType::MessaggioAsincrono, AttenzioneAttesa, AttenzioneTxt, AttenzioneVoice },
@@ -1463,7 +1482,7 @@ void __fastcall TfrmMain::actGareProvaPGCMiratoStartExecute(TObject *Sender)
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
         { CmdType::MessaggioAsincrono, AttenzioneAttesa, AttenzioneTxt, AttenzioneVoice },
         { CmdType::Chiusura,   7,   _T( "Chiuso 7 sec" ) },
-        { CmdType::Apertura, 300,   _T( "Aperto 300 sec" ) },
+        { CmdType::Apertura, 240,   _T( "Aperto 240 sec" ) },
         { CmdType::Chiusura,   AttesaChiusura,   ChiusoTxt },
         { CmdType::MessaggioSincrono, 0, ScaricareTxt, ScaricareVoice },
     } };
@@ -1771,7 +1790,7 @@ void __fastcall TfrmMain::actGareProvaPA8Execute(TObject *Sender)
         },
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
         { CmdType::MessaggioAsincrono, AttenzioneAttesa, AttenzioneTxt, AttenzioneVoice },
-        { CmdType::Chiusura,   3,   _T( "Chiuso 3 sec" ) },
+        { CmdType::Chiusura,   7,   _T( "Chiuso 7 sec" ) },
         { CmdType::StartAudioSampling,   0,   nullptr },
         { CmdType::Apertura,   8,   _T( "Aperto 8 sec" ) },
         { CmdType::Chiusura,   AttesaChiusura,   ChiusoTxt },
@@ -1796,7 +1815,7 @@ void __fastcall TfrmMain::actGarePrimaPA8Execute(TObject *Sender)
         },
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
         { CmdType::MessaggioAsincrono, AttenzioneAttesa, AttenzioneTxt, AttenzioneVoice },
-        { CmdType::Chiusura,   3,   _T( "Chiuso 3 sec" ) },
+        { CmdType::Chiusura,   7,   _T( "Chiuso 7 sec" ) },
         { CmdType::StartAudioSampling,   0,   nullptr },
         { CmdType::Apertura,   8,   _T( "Aperto 8 sec" ) },
         { CmdType::Chiusura,   AttesaChiusura,   ChiusoTxt },
@@ -1821,7 +1840,7 @@ void __fastcall TfrmMain::actGareProssimaPA8Execute(TObject *Sender)
         },
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
         { CmdType::MessaggioAsincrono, AttenzioneAttesa, AttenzioneTxt, AttenzioneVoice },
-        { CmdType::Chiusura,   3,   _T( "Chiuso 3 sec" ) },
+        { CmdType::Chiusura,   7,   _T( "Chiuso 7 sec" ) },
         { CmdType::StartAudioSampling,   0,   nullptr },
         { CmdType::Apertura,   8,   _T( "Aperto 8 sec" ) },
         { CmdType::Chiusura,   AttesaChiusura,   ChiusoTxt },
@@ -1846,7 +1865,7 @@ void __fastcall TfrmMain::actGarePrimaPA6Execute(TObject *Sender)
         },
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
         { CmdType::MessaggioAsincrono, AttenzioneAttesa, AttenzioneTxt, AttenzioneVoice },
-        { CmdType::Chiusura,   3,   _T( "Chiuso 3 sec" ) },
+        { CmdType::Chiusura,   7,   _T( "Chiuso 7 sec" ) },
         { CmdType::StartAudioSampling,   0,   nullptr },
         { CmdType::Apertura,   6,   _T( "Aperto 6 sec" ) },
         { CmdType::Chiusura,   AttesaChiusura,   ChiusoTxt },
@@ -1871,7 +1890,7 @@ void __fastcall TfrmMain::actGareProssimaPA6Execute(TObject *Sender)
         },
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
         { CmdType::MessaggioAsincrono, AttenzioneAttesa, AttenzioneTxt, AttenzioneVoice },
-        { CmdType::Chiusura,   3,   _T( "Chiuso 3 sec" ) },
+        { CmdType::Chiusura,   7,   _T( "Chiuso 7 sec" ) },
         { CmdType::StartAudioSampling,   0,   nullptr },
         { CmdType::Apertura,   6,   _T( "Aperto 6 sec" ) },
         { CmdType::Chiusura,   AttesaChiusura,   ChiusoTxt },
@@ -1896,7 +1915,7 @@ void __fastcall TfrmMain::actGarePrimaPA4Execute(TObject *Sender)
         },
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
         { CmdType::MessaggioAsincrono, AttenzioneAttesa, AttenzioneTxt, AttenzioneVoice },
-        { CmdType::Chiusura,   3,   _T( "Chiuso 3 sec" ) },
+        { CmdType::Chiusura,   7,   _T( "Chiuso 7 sec" ) },
         { CmdType::StartAudioSampling,   0,   nullptr },
         { CmdType::Apertura,   4,   _T( "Aperto 4 sec" ) },
         { CmdType::Chiusura,   AttesaChiusura,   ChiusoTxt },

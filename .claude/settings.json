@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path 'c:\\\\Users\\\\Giuliano\\\\Documents\\\\Embarcadero\\\\Studio\\\\Projects\\\\Paolini\\\\Sagome\\\\__astcache' -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -match 'gdiplus|vclgdi' } | ForEach-Object { '{0,10} {1}  {2}' -f $_.Length, $_.LastWriteTime, $_.FullName.Substring\\(85\\) })",
+      "Bash(ls \"c:\\\\Users\\\\Giuliano\\\\Documents\\\\Embarcadero\\\\Studio\\\\Projects\\\\PlannerRevisioni\" 2>&1)",
+      "Read(//c/Users/Giuliano/Documents/Embarcadero/Studio/Projects/PlannerRevisioni/**)"
+    ]
+  }
+}

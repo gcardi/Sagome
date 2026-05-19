@@ -695,7 +695,7 @@ private:
         read = GetSagome6_10_Out, write = SetSagome6_10_Out
     };
 
-    void StopGara();
+    void StopGara( bool Error = false );
     void Close();
     void LogException( Exception const & E );
     void LogStdException( std::exception const & e );

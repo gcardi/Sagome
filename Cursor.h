@@ -3,16 +3,17 @@
 #ifndef CursorH
 #define CursorH
 
-#include <boost/utility.hpp>
 
-class TCursorManager : boost::noncopyable
+class TCursorManager
 {
 private:
     TCursor oldCursor_;
     bool restored_;
 public:
-    __fastcall TCursorManager( TCursor Cursor = crHourGlass );
-    __fastcall ~TCursorManager() throw();
+    TCursorManager( TCursor Cursor = crHourGlass );
+    TCursorManager( TCursorManager const & ) = delete;
+    TCursorManager& operator=( TCursorManager const & ) = delete;
+    ~TCursorManager() throw();
     TCursor __fastcall Set( TCursor Cursor );
     void __fastcall Restore();
 };

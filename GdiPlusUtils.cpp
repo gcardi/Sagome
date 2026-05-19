@@ -13,7 +13,7 @@
 
 #include "VclGdiplus.h"
 
-using std::auto_ptr;
+using std::make_unique;
 using std::vector;
 
 using boost::scoped_ptr;
@@ -127,11 +127,13 @@ String GetGdiplusStatusStrings( Gdiplus::Status Code ) {
 }
 //---------------------------------------------------------------------------
 
-class TEOSErrorLocalFree : public boost::noncopyable {
+class TEOSErrorLocalFree {
 public:
-    explicit __fastcall TEOSErrorLocalFree( PVOID Buffer )
+    explicit TEOSErrorLocalFree( PVOID Buffer )
         : Buffer_( Buffer ) {}
-    __fastcall ~TEOSErrorLocalFree() { LocalFree( Buffer_ ); }
+    TEOSErrorLocalFree( TEOSErrorLocalFree const & ) = delete;
+    TEOSErrorLocalFree operator=( TEOSErrorLocalFree const & ) = delete;
+    ~TEOSErrorLocalFree() { LocalFree( Buffer_ ); }
 private:
     PVOID Buffer_;
 };
@@ -161,7 +163,7 @@ String FormatOSErrorMessage( DWORD ErrCode )
 Gdiplus::Image* LoadImage( String FileName )
 {
     if ( FileExists( FileName ) ) {
-        auto_ptr<Gdiplus::Image> NewImage( new Gdiplus::Image( FileName.c_str() ) );
+		auto NewImage( make_unique<Gdiplus::Image>( FileName.c_str() ) );
         if ( NewImage.get() )
             GdiplusCheck( NewImage->GetLastStatus() );
 /*
@@ -377,23 +379,26 @@ Gdiplus::Image* LoadImageFromStream( TStream* Stream, String MimeType )
     TStreamAdapter* const SA = new TStreamAdapter( Stream, soReference );
 
     //TRaii<TStreamAdapter,&TStreamAdapter::_AddRef,&TStreamAdapter::_Release>
-    //const RefCountManager( *SA );
-    struct TRefCountManager {
-        TRefCountManager( TStreamAdapter& SA )
-           : sa_{ SA } { sa_._AddRef(); }
-        ~TRefCountManager() {
-            try {
-                sa_._Release();
-            }
-            catch ( ... ) {
-            }
-        }
-        TStreamAdapter& sa_;
-    }
-    RefCountManager( *SA );
+	//const RefCountManager( *SA );
 
-    CLSID ClassID;
-    GetEncoderClsid( MimeType.c_str(), &ClassID );
+	/*
+	struct TRefCountManager {
+		TRefCountManager( TStreamAdapter& SA )
+		   : sa_{ SA } { sa_._AddRef(); }
+		~TRefCountManager() {
+			try {
+				sa_._Release();
+			}
+			catch ( ... ) {
+			}
+		}
+		TStreamAdapter& sa_;
+	}
+	RefCountManager( *SA );
+	*/
+
+	CLSID ClassID;
+	GetEncoderClsid( MimeType.c_str(), &ClassID );
     //IStream& istream = *SA->operator IStream *();
     _di_IStream istream = SA->operator _di_IStream();
 
@@ -401,7 +406,7 @@ Gdiplus::Image* LoadImageFromStream( TStream* Stream, String MimeType )
     //scoped_ptr<Gdiplus::Image> i( new Gdiplus::Image( &istream ) );
     Gdiplus::SizeF Size;
     i->GetPhysicalDimension( &Size );
-    auto_ptr<Gdiplus::Bitmap> Bmp( new Gdiplus::Bitmap( Size.Width, Size.Height ) );
+    auto Bmp( make_unique<Gdiplus::Bitmap>( Size.Width, Size.Height ) );
     Gdiplus::Graphics g( Bmp.get() );
     g.DrawImage( i.get(), 0, 0 );
     return Bmp.release();

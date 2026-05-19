@@ -13,10 +13,8 @@ object frmMain: TfrmMain
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   ShowHint = True
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
@@ -58,11 +56,13 @@ object frmMain: TfrmMain
         Width = 958
         Height = 252
         ScrollBars = ssBoth
+        StyleElements = [seFont, seClient, seBorder]
         ExplicitWidth = 958
         ExplicitHeight = 252
       end
       inherited Panel2: TPanel
         Width = 958
+        StyleElements = [seFont, seClient, seBorder]
         ExplicitWidth = 958
       end
     end
@@ -110,14 +110,14 @@ object frmMain: TfrmMain
         Top = 0
         Width = 625
         Height = 124
-        ActivePage = tbshtModbus
+        ActivePage = tbshtPGCMirato
         Align = alLeft
         TabOrder = 0
         object tbshtPGCMirato: TTabSheet
           Caption = 'PGC Mirato'
           ImageIndex = 2
           object Button2: TButton
-            Left = 14
+            Left = 22
             Top = 14
             Width = 155
             Height = 25
@@ -360,6 +360,7 @@ object frmMain: TfrmMain
             inherited Panel4: TPanel
               Width = 617
               Caption = 'Functions'
+              StyleElements = [seFont, seClient, seBorder]
               ExplicitWidth = 617
             end
             inherited pgctrlFunctions: TPageControl
@@ -369,23 +370,132 @@ object frmMain: TfrmMain
               ExplicitWidth = 617
               ExplicitHeight = 79
               inherited tbshrFnReadHoldingRegisters: TTabSheet
+                ExplicitTop = 24
+                ExplicitHeight = 75
+                inherited Label3: TLabel
+                  Width = 39
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 39
+                  ExplicitHeight = 13
+                end
+                inherited Label4: TLabel
+                  Width = 54
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 54
+                  ExplicitHeight = 13
+                end
                 inherited Button2: TButton
                   Action = actFnReadHoldingRegisters
                   Caption = 'Read'
                 end
+                inherited edtReadHoldingRegistersAddr: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
+                end
+                inherited edtReadHoldingRegistersPtCnt: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
+                end
               end
               inherited tbshrFnReadInputRegisters: TTabSheet
+                ExplicitTop = 24
+                ExplicitHeight = 75
+                inherited Label12: TLabel
+                  Width = 39
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 39
+                  ExplicitHeight = 13
+                end
+                inherited Label13: TLabel
+                  Width = 54
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 54
+                  ExplicitHeight = 13
+                end
                 inherited Button6: TButton
                   Action = actFnReadInputRegisters
                   Caption = 'Read'
                 end
+                inherited edtReadInputRegistersAddr: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
+                end
+                inherited edtReadInputRegistersPtCnt: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
+                end
               end
               inherited tbshtFnPresetSingleRegister: TTabSheet
+                ExplicitTop = 24
                 ExplicitWidth = 609
                 ExplicitHeight = 51
+                inherited Label8: TLabel
+                  Width = 39
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 39
+                  ExplicitHeight = 13
+                end
+                inherited Label9: TLabel
+                  Width = 26
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 26
+                  ExplicitHeight = 13
+                end
+                inherited Label2: TLabel
+                  Width = 46
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 46
+                  ExplicitHeight = 13
+                end
                 inherited Button3: TButton
                   Action = actFnPresetSingleRegister
                   Caption = 'Preset'
+                end
+                inherited edtPresetSingleRegisterAddr: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
+                end
+                inherited edtPresetSingleRegisterValue: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
+                end
+                inherited edtPresetSingleRegisterPulseTime: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
+                end
+              end
+              inherited tbshtFnPresetMultipleRegisters: TTabSheet
+                ExplicitTop = 24
+                ExplicitHeight = 75
+                inherited Label10: TLabel
+                  Width = 39
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 39
+                  ExplicitHeight = 13
+                end
+                inherited Label11: TLabel
+                  Width = 23
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 23
+                  ExplicitHeight = 13
+                end
+                inherited Label1: TLabel
+                  Width = 46
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 46
+                  ExplicitHeight = 13
+                end
+                inherited edtPresetMultipleRegistersAddr: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
+                end
+                inherited edtPresetMultipleRegistersData: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
+                end
+                inherited edtPresetMultipleRegisterPulseTime: TEdit
+                  StyleElements = [seFont, seClient, seBorder]
                 end
               end
             end
@@ -628,14 +738,66 @@ object frmMain: TfrmMain
                 TabOrder = 0
                 ExplicitLeft = 3
                 ExplicitTop = 1
+                inherited Label5: TLabel
+                  Width = 30
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 30
+                  ExplicitHeight = 13
+                end
+                inherited Label6: TLabel
+                  Width = 28
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 28
+                  ExplicitHeight = 13
+                end
+                inherited Label7: TLabel
+                  Width = 42
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 42
+                  ExplicitHeight = 13
+                end
+                inherited Label8: TLabel
+                  Width = 43
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 43
+                  ExplicitHeight = 13
+                end
+                inherited Label1: TLabel
+                  Width = 49
+                  Height = 13
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitWidth = 49
+                  ExplicitHeight = 13
+                end
+                inherited cmboxSpeed: TComboBox
+                  Height = 21
+                  StyleElements = [seFont, seClient, seBorder]
+                end
+                inherited cmboxParity: TComboBox
+                  Height = 21
+                  StyleElements = [seFont, seClient, seBorder]
+                end
                 inherited cmboxStopBits: TComboBox
+                  Height = 21
                   TabOrder = 3
+                  StyleElements = [seFont, seClient, seBorder]
                 end
                 inherited cmboxDataBits: TComboBox
+                  Height = 21
                   TabOrder = 4
+                  StyleElements = [seFont, seClient, seBorder]
                 end
                 inherited checkboxCancelTXEcho: TCheckBox
                   TabOrder = 2
+                end
+                inherited cmboxPortName: TComboBox
+                  Height = 21
+                  StyleElements = [seFont, seClient, seBorder]
+                  ExplicitHeight = 21
                 end
               end
             end
@@ -865,7 +1027,6 @@ object frmMain: TfrmMain
                 Data = {
                   0004000000000000000000000000000000000000000000000000000000000000
                   0000000000}
-                Detail = {0000000000}
               end
               object SeriesFreq1: TLineSeries
                 Legend.Visible = False
@@ -909,7 +1070,6 @@ object frmMain: TfrmMain
                 YValues.Name = 'Y'
                 YValues.Order = loNone
                 Data = {000200000000000000000034C000000000000034C0}
-                Detail = {0000000000}
               end
             end
           end
@@ -964,7 +1124,6 @@ object frmMain: TfrmMain
                   0000003E400000000000803B400000000000205C400000000000001E40000000
                   0000405A400000000000806B4000000000003071400000000000987740000000
                   0000707C400000000000987C40}
-                Detail = {0000000000}
               end
               object SeriesTime2: TLineSeries
                 Legend.Visible = False

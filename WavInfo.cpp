@@ -17,7 +17,7 @@ using std::make_unique;
 WavInfo::WavInfo( String FileName )
 {
     auto FS = make_unique<TFileStream>( FileName, fmOpenRead, fmShareDenyNone );
-    if ( FS->Read( &wh_, sizeof wh_ ) < sizeof wh_ ) {
+    if ( FS->Read( &wh_, System::NativeInt( sizeof wh_ ) ) < sizeof wh_ ) {
         RaiseInvalidFileFormat( FileName );
     }
     if ( wh_.AudioFormat != 1 ) {
