@@ -1476,7 +1476,7 @@ void __fastcall TfrmMain::actGareProvaPGCMiratoStartExecute(TObject *Sender)
         { CmdType::Apertura, 0, ApertoSubitoTxt },
         {
             CmdType::MessaggioSincrono, 0,
-            _T( "Per la serie di prova di tiro mirato in 300 secondi, caricare." ),
+            _T( "Per la serie di prova di tiro mirato in 240 secondi, caricare." ),
                 _T( "PGC_Mirato_9.wav" )
         },
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
