@@ -5,6 +5,21 @@ object frmMain: TfrmMain
   ClientHeight = 726
   ClientWidth = 958
   Color = clBtnFace
+  CustomTitleBar.Control = TitleBarPanel1
+  CustomTitleBar.Enabled = True
+  CustomTitleBar.Height = 31
+  CustomTitleBar.BackgroundColor = clWhite
+  CustomTitleBar.ForegroundColor = 65793
+  CustomTitleBar.InactiveBackgroundColor = clWhite
+  CustomTitleBar.InactiveForegroundColor = 10066329
+  CustomTitleBar.ButtonForegroundColor = 65793
+  CustomTitleBar.ButtonBackgroundColor = clWhite
+  CustomTitleBar.ButtonHoverForegroundColor = 65793
+  CustomTitleBar.ButtonHoverBackgroundColor = 16053492
+  CustomTitleBar.ButtonPressedForegroundColor = 65793
+  CustomTitleBar.ButtonPressedBackgroundColor = 15395562
+  CustomTitleBar.ButtonInactiveForegroundColor = 10066329
+  CustomTitleBar.ButtonInactiveBackgroundColor = clWhite
   Constraints.MinHeight = 600
   Constraints.MinWidth = 970
   DoubleBuffered = True
@@ -13,12 +28,15 @@ object frmMain: TfrmMain
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  GlassFrame.Enabled = True
+  GlassFrame.Top = 31
   ShowHint = True
+  StyleElements = [seFont, seClient]
   OnShow = FormShow
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 294
+    Top = 324
     Width = 958
     Height = 3
     Cursor = crVSplit
@@ -28,11 +46,39 @@ object frmMain: TfrmMain
     ExplicitTop = 223
     ExplicitWidth = 664
   end
+  object TitleBarPanel1: TTitleBarPanel
+    Left = 0
+    Top = 0
+    Width = 958
+    Height = 30
+    CustomButtons = <
+      item
+        ButtonType = sbCustom
+        Hint = 'Cambia tema'
+        Width = 46
+        OnPaint = TitleBarPanel1CustomButtons0Paint
+        OnClick = TitleBarPanel1CustomButtons0Click
+      end>
+    DesignSize = (
+      958
+      30)
+    object lblTitleBarCaption: TLabel
+      Left = 36
+      Top = 0
+      Width = 600
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      AutoSize = False
+      EllipsisPosition = epEndEllipsis
+      Transparent = True
+      Layout = tlCenter
+    end
+  end
   object pnlLog: TPanel
     Left = 0
-    Top = 438
+    Top = 468
     Width = 958
-    Height = 269
+    Height = 239
     Margins.Left = 8
     Margins.Top = 0
     Margins.Right = 8
@@ -47,22 +93,20 @@ object frmMain: TfrmMain
       Left = 0
       Top = 0
       Width = 958
-      Height = 269
+      Height = 239
       Align = alClient
       TabOrder = 0
       ExplicitWidth = 958
-      ExplicitHeight = 269
+      ExplicitHeight = 239
       inherited RichEdit1: TRichEdit
         Width = 958
-        Height = 252
+        Height = 222
         ScrollBars = ssBoth
-        StyleElements = [seFont, seClient, seBorder]
         ExplicitWidth = 958
-        ExplicitHeight = 252
+        ExplicitHeight = 222
       end
       inherited Panel2: TPanel
         Width = 958
-        StyleElements = [seFont, seClient, seBorder]
         ExplicitWidth = 958
       end
     end
@@ -78,7 +122,7 @@ object frmMain: TfrmMain
   end
   object pnlTrials: TPanel
     Left = 0
-    Top = 297
+    Top = 327
     Width = 958
     Height = 141
     Align = alTop
@@ -360,7 +404,6 @@ object frmMain: TfrmMain
             inherited Panel4: TPanel
               Width = 617
               Caption = 'Functions'
-              StyleElements = [seFont, seClient, seBorder]
               ExplicitWidth = 617
             end
             inherited pgctrlFunctions: TPageControl
@@ -375,26 +418,18 @@ object frmMain: TfrmMain
                 inherited Label3: TLabel
                   Width = 39
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 39
                   ExplicitHeight = 13
                 end
                 inherited Label4: TLabel
                   Width = 54
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 54
                   ExplicitHeight = 13
                 end
                 inherited Button2: TButton
                   Action = actFnReadHoldingRegisters
                   Caption = 'Read'
-                end
-                inherited edtReadHoldingRegistersAddr: TEdit
-                  StyleElements = [seFont, seClient, seBorder]
-                end
-                inherited edtReadHoldingRegistersPtCnt: TEdit
-                  StyleElements = [seFont, seClient, seBorder]
                 end
               end
               inherited tbshrFnReadInputRegisters: TTabSheet
@@ -403,26 +438,18 @@ object frmMain: TfrmMain
                 inherited Label12: TLabel
                   Width = 39
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 39
                   ExplicitHeight = 13
                 end
                 inherited Label13: TLabel
                   Width = 54
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 54
                   ExplicitHeight = 13
                 end
                 inherited Button6: TButton
                   Action = actFnReadInputRegisters
                   Caption = 'Read'
-                end
-                inherited edtReadInputRegistersAddr: TEdit
-                  StyleElements = [seFont, seClient, seBorder]
-                end
-                inherited edtReadInputRegistersPtCnt: TEdit
-                  StyleElements = [seFont, seClient, seBorder]
                 end
               end
               inherited tbshtFnPresetSingleRegister: TTabSheet
@@ -432,36 +459,24 @@ object frmMain: TfrmMain
                 inherited Label8: TLabel
                   Width = 39
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 39
                   ExplicitHeight = 13
                 end
                 inherited Label9: TLabel
                   Width = 26
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 26
                   ExplicitHeight = 13
                 end
                 inherited Label2: TLabel
                   Width = 46
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 46
                   ExplicitHeight = 13
                 end
                 inherited Button3: TButton
                   Action = actFnPresetSingleRegister
                   Caption = 'Preset'
-                end
-                inherited edtPresetSingleRegisterAddr: TEdit
-                  StyleElements = [seFont, seClient, seBorder]
-                end
-                inherited edtPresetSingleRegisterValue: TEdit
-                  StyleElements = [seFont, seClient, seBorder]
-                end
-                inherited edtPresetSingleRegisterPulseTime: TEdit
-                  StyleElements = [seFont, seClient, seBorder]
                 end
               end
               inherited tbshtFnPresetMultipleRegisters: TTabSheet
@@ -470,32 +485,20 @@ object frmMain: TfrmMain
                 inherited Label10: TLabel
                   Width = 39
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 39
                   ExplicitHeight = 13
                 end
                 inherited Label11: TLabel
                   Width = 23
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 23
                   ExplicitHeight = 13
                 end
                 inherited Label1: TLabel
                   Width = 46
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 46
                   ExplicitHeight = 13
-                end
-                inherited edtPresetMultipleRegistersAddr: TEdit
-                  StyleElements = [seFont, seClient, seBorder]
-                end
-                inherited edtPresetMultipleRegistersData: TEdit
-                  StyleElements = [seFont, seClient, seBorder]
-                end
-                inherited edtPresetMultipleRegisterPulseTime: TEdit
-                  StyleElements = [seFont, seClient, seBorder]
                 end
               end
             end
@@ -542,7 +545,7 @@ object frmMain: TfrmMain
   end
   object pnlTop: TPanel
     Left = 0
-    Top = 0
+    Top = 30
     Width = 958
     Height = 294
     Align = alTop
@@ -579,16 +582,16 @@ object frmMain: TfrmMain
         object PaintBox6_10: TPaintBox
           Tag = 1
           Left = 163
-          Top = 139
-          Width = 174
-          Height = 17
+          Top = 137
+          Width = 238
+          Height = 21
           OnPaint = PaintBox1_5Paint
         end
         object PaintBox1_5: TPaintBox
           Left = 163
-          Top = 106
-          Width = 174
-          Height = 17
+          Top = 104
+          Width = 238
+          Height = 21
           OnPaint = PaintBox1_5Paint
         end
         object Label8: TLabel
@@ -634,22 +637,25 @@ object frmMain: TfrmMain
         object ToggleSwitch1: TToggleSwitch
           Left = 40
           Top = 104
-          Width = 72
+          Width = 50
           Height = 20
           Action = actGareEnb1_5
-          FrameColor = clWindowFrame
+          ShowStateCaption = False
+          StyleName = 'Windows'
           TabOrder = 1
-          ThumbColor = cl3DDkShadow
         end
         object ToggleSwitch2: TToggleSwitch
           Left = 40
           Top = 137
-          Width = 72
+          Width = 50
           Height = 20
           Action = actGareEnb6_10
-          FrameColor = clWindowFrame
+          Color = clBtnFace
+          ParentShowHint = False
+          ShowHint = True
+          ShowStateCaption = False
+          StyleName = 'Windows'
           TabOrder = 2
-          ThumbColor = cl3DDkShadow
         end
         object GroupBox2: TGroupBox
           Left = 12
@@ -741,62 +747,52 @@ object frmMain: TfrmMain
                 inherited Label5: TLabel
                   Width = 30
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 30
                   ExplicitHeight = 13
                 end
                 inherited Label6: TLabel
                   Width = 28
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 28
                   ExplicitHeight = 13
                 end
                 inherited Label7: TLabel
                   Width = 42
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 42
                   ExplicitHeight = 13
                 end
                 inherited Label8: TLabel
                   Width = 43
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 43
                   ExplicitHeight = 13
                 end
                 inherited Label1: TLabel
                   Width = 49
                   Height = 13
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitWidth = 49
                   ExplicitHeight = 13
                 end
                 inherited cmboxSpeed: TComboBox
                   Height = 21
-                  StyleElements = [seFont, seClient, seBorder]
                 end
                 inherited cmboxParity: TComboBox
                   Height = 21
-                  StyleElements = [seFont, seClient, seBorder]
                 end
                 inherited cmboxStopBits: TComboBox
                   Height = 21
                   TabOrder = 3
-                  StyleElements = [seFont, seClient, seBorder]
                 end
                 inherited cmboxDataBits: TComboBox
                   Height = 21
                   TabOrder = 4
-                  StyleElements = [seFont, seClient, seBorder]
                 end
                 inherited checkboxCancelTXEcho: TCheckBox
                   TabOrder = 2
                 end
                 inherited cmboxPortName: TComboBox
                   Height = 21
-                  StyleElements = [seFont, seClient, seBorder]
                   ExplicitHeight = 21
                 end
               end
@@ -987,15 +983,15 @@ object frmMain: TfrmMain
               BottomAxis.Automatic = False
               BottomAxis.AutomaticMaximum = False
               BottomAxis.AutomaticMinimum = False
-              BottomAxis.LogarithmicBase = 2.00000000000000000
-              BottomAxis.Maximum = 11025.00000000000000000
-              BottomAxis.Minimum = 60.00000000000000000
+              BottomAxis.LogarithmicBase = 2.000000000000000000
+              BottomAxis.Maximum = 11025.000000000000000000
+              BottomAxis.Minimum = 60.000000000000000000
               LeftAxis.Automatic = False
               LeftAxis.AutomaticMaximum = False
               LeftAxis.AutomaticMinimum = False
               LeftAxis.LabelsSeparation = 20
-              LeftAxis.Maximum = 10.00000000000000000
-              LeftAxis.Minimum = -100.00000000000000000
+              LeftAxis.Maximum = 10.000000000000000000
+              LeftAxis.Minimum = -100.000000000000000000
               LeftAxis.Title.Caption = 'dB'
               LeftAxis.Title.Visible = False
               Panning.MouseWheel = pmwNone
@@ -1086,13 +1082,13 @@ object frmMain: TfrmMain
               BottomAxis.Automatic = False
               BottomAxis.AutomaticMaximum = False
               BottomAxis.AutomaticMinimum = False
-              BottomAxis.LogarithmicBase = 2.00000000000000000
-              BottomAxis.Maximum = 512.00000000000000000
+              BottomAxis.LogarithmicBase = 2.000000000000000000
+              BottomAxis.Maximum = 512.000000000000000000
               LeftAxis.Automatic = False
               LeftAxis.AutomaticMaximum = False
               LeftAxis.AutomaticMinimum = False
-              LeftAxis.Maximum = 1.00000000000000000
-              LeftAxis.Minimum = -1.00000000000000000
+              LeftAxis.Maximum = 1.000000000000000000
+              LeftAxis.Minimum = -1.000000000000000000
               RightAxis.Visible = False
               View3D = False
               Zoom.Allow = False
@@ -1157,11 +1153,12 @@ object frmMain: TfrmMain
           object Label11: TLabel
             Left = 0
             Top = 0
-            Width = 47
+            Width = 71
             Height = 13
             Align = alTop
             Alignment = taCenter
             Caption = 'Threshold'
+            ExplicitWidth = 47
           end
           object lblThreshold: TLabel
             Left = 0
@@ -1226,16 +1223,17 @@ object frmMain: TfrmMain
               object Label13: TLabel
                 Left = 0
                 Top = 0
-                Width = 18
+                Width = 37
                 Height = 13
                 Align = alTop
                 Caption = '0dB'
+                ExplicitWidth = 18
               end
               object lblFloor_dB: TLabel
                 AlignWithMargins = True
                 Left = 0
                 Top = 127
-                Width = 18
+                Width = 37
                 Height = 13
                 Margins.Left = 0
                 Margins.Top = 0
@@ -1243,6 +1241,7 @@ object frmMain: TfrmMain
                 Margins.Bottom = 1
                 Align = alBottom
                 Caption = '0dB'
+                ExplicitWidth = 18
               end
             end
           end
@@ -1303,7 +1302,7 @@ object frmMain: TfrmMain
               AlignWithMargins = True
               Left = 2
               Top = 93
-              Width = 20
+              Width = 40
               Height = 13
               Margins.Left = 2
               Margins.Top = 0
@@ -1316,12 +1315,13 @@ object frmMain: TfrmMain
               Font.Name = 'Tahoma'
               Font.Style = []
               ParentFont = False
+              ExplicitWidth = 20
             end
             object lblSpectrogramDuration: TLabel
               AlignWithMargins = True
               Left = 2
               Top = 0
-              Width = 20
+              Width = 40
               Height = 13
               Margins.Left = 2
               Margins.Top = 0
@@ -1334,6 +1334,7 @@ object frmMain: TfrmMain
               Font.Name = 'Tahoma'
               Font.Style = []
               ParentFont = False
+              ExplicitWidth = 20
             end
           end
           object pnlPeaksTimepoint: TPanel
@@ -1615,8 +1616,30 @@ object frmMain: TfrmMain
       OnExecute = actWaveSetParametersExecute
       OnUpdate = actWaveSetParametersUpdate
     end
+    object actViewSetUIModeLight: TAction
+      Category = 'View'
+      Caption = 'Tema &chiaro'
+      Hint = 'Imposta tema chiaro'
+      OnExecute = actViewSetUIModeLightExecute
+      OnUpdate = actViewSetUIModeLightUpdate
+    end
+    object actViewSetUIModeDark: TAction
+      Category = 'View'
+      Caption = 'Tema &scuro'
+      Hint = 'Imposta tema scuro'
+      OnExecute = actViewSetUIModeDarkExecute
+      OnUpdate = actViewSetUIModeDarkUpdate
+    end
+    object actViewToggleUIMode: TAction
+      Category = 'View'
+      Caption = 'Cambia tema'
+      Hint = 'Cambia tema|Passa al tema successivo'
+      OnExecute = actViewToggleUIModeExecute
+    end
   end
   object ApplicationEvents1: TApplicationEvents
+    OnActivate = ApplicationEvents1Activate
+    OnDeactivate = ApplicationEvents1Deactivate
     OnIdle = ApplicationEvents1Idle
     Left = 480
     Top = 360
@@ -1633,5 +1656,255 @@ object frmMain: TfrmMain
     OnTimer = tmrReadStatusPortaTimer
     Left = 364
     Top = 468
+  end
+  object SVGIcnImgCollTitleBar: TSVGIconImageCollection
+    SVGIconItems = <
+      item
+        IconName = 'DarkMode'
+        SVGText = 
+          '<?xml version="1.0" standalone="no"?>'#13#10'<svg xml:space="preserve"' +
+          ' width="75.999329" height="76.464935" version="1.1" shape-render' +
+          'ing="geometricPrecision" text-rendering="geometricPrecision" ima' +
+          'ge-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="ev' +
+          'enodd" viewBox="0 0 88.23922 88.163077" id="svg204" sodipodi:doc' +
+          'name="DarkMode.svg" inkscape:version="1.2.2 (b0a8486541, 2022-12' +
+          '-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscap' +
+          'e" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-' +
+          '0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.' +
+          'w3.org/2000/svg">'#13#10'  <defs id="defs208"/>'#13#10'  <sodipodi:namedview' +
+          ' id="namedview206" pagecolor="#ffffff" bordercolor="#666666" bor' +
+          'deropacity="1.0" inkscape:showpageshadow="2" inkscape:pageopacit' +
+          'y="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d' +
+          '1" showgrid="false" inkscape:zoom="11.25974" inkscape:cx="37.967' +
+          '128" inkscape:cy="38.233564" inkscape:window-width="1920" inksca' +
+          'pe:window-height="1115" inkscape:window-x="0" inkscape:window-y=' +
+          '"0" inkscape:window-maximized="1" inkscape:current-layer="svg204' +
+          '"/>'#13#10#13#10'   <g id="Livello_x0020_1" inkscape:label="Livello 1" ink' +
+          'scape:groupmode="layer" transform="translate(0,-0.31071204)">'#13#10' ' +
+          '   <metadata id="CorelCorpID_0Corel-Layer"/>'#13#10'  '#13#10'    <path fill' +
+          '="#373435" d="m 84.16,41.85 3.83,-4.59 C 90.54,64.85 73.35,88.78' +
+          ' 44.29,88.78 19.83,88.78 0,68.94 0,44.48 0,17.98 25,-4.52 51.52,' +
+          '0.78 l -4.59,3.83 c -9.86,10.32 -9.72,26.67 0.42,36.81 10.14,10.' +
+          '14 26.5,10.29 36.81,0.43 z M 41.26,4.64 c -8.84,12 -7.83,28.98 3' +
+          '.03,39.84 10.86,10.86 27.85,11.87 39.85,3.03 C 82.59,68.17 65.34' +
+          ',84.44 44.29,84.44 22.22,84.44 4.33,66.55 4.33,44.48 4.33,23.43 ' +
+          '20.61,6.19 41.26,4.64 Z" id="path201"/>'#13#10'  '#13#10' </g>'#13#10#13#10'</svg>'#13#10
+      end
+      item
+        IconName = 'LightMode'
+        SVGText = 
+          '<?xml version="1.0" standalone="no"?>'#13#10'<svg xml:space="preserve"' +
+          ' width="75" height="75" version="1.1" shape-rendering="geometric' +
+          'Precision" text-rendering="geometricPrecision" image-rendering="' +
+          'optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox' +
+          '="0 0 87.7 87.7" id="svg264" sodipodi:docname="LightMode.svg" in' +
+          'kscape:version="1.2.2 (b0a8486541, 2022-12-01)" xmlns:inkscape="' +
+          'http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="htt' +
+          'p://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://w' +
+          'ww.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">'#13#10'  <' +
+          'defs id="defs268"/>'#13#10'  <sodipodi:namedview id="namedview266" pag' +
+          'ecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inksc' +
+          'ape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagec' +
+          'heckerboard="0" inkscape:deskcolor="#d1d1d1" showgrid="false" in' +
+          'kscape:zoom="3.1466667" inkscape:cx="37.658898" inkscape:cy="37.' +
+          '658898" inkscape:window-width="1920" inkscape:window-height="111' +
+          '5" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-m' +
+          'aximized="1" inkscape:current-layer="Livello_x0020_1"/>'#13#10#13#10'   <g' +
+          ' id="Livello_x0020_1" inkscape:label="Livello 1" inkscape:groupm' +
+          'ode="layer">'#13#10'    <metadata id="CorelCorpID_0Corel-Layer"/>'#13#10'  '#13 +
+          #10'    <path fill="#373435" d="M 69.23,41.67 H 87.7 v 4.37 H 69.23' +
+          ' c 0.06,-0.72 0.1,-1.45 0.1,-2.19 0,-0.73 -0.04,-1.46 -0.1,-2.18' +
+          ' z M 0,41.67 h 18.47 c -0.06,0.72 -0.09,1.45 -0.09,2.18 0,0.74 0' +
+          '.03,1.47 0.09,2.19 H 0 Z M 60.25,24.36 73.32,11.3 76.4,14.39 63.' +
+          '34,27.45 C 62.4,26.33 61.37,25.3 60.25,24.36 Z M 11.3,73.32 24.3' +
+          '6,60.25 c 0.94,1.12 1.97,2.15 3.09,3.09 L 14.39,76.4 Z M 41.67,1' +
+          '8.47 V 0 h 4.36 v 18.47 c -0.72,-0.06 -1.44,-0.09 -2.18,-0.09 -0' +
+          '.73,0 -1.46,0.03 -2.18,0.09 z m 0,69.23 V 69.23 c 0.72,0.06 1.45' +
+          ',0.1 2.18,0.1 0.74,0 1.46,-0.04 2.18,-0.1 V 87.7 Z M 24.36,27.45' +
+          ' 11.3,14.39 14.39,11.3 27.45,24.36 c -1.12,0.94 -2.15,1.97 -3.09' +
+          ',3.09 z M 73.31,76.4 60.25,63.34 c 1.12,-0.94 2.15,-1.97 3.09,-3' +
+          '.09 L 76.4,73.31 Z M 43.85,25.43 c 10.18,0 18.43,8.25 18.43,18.4' +
+          '2 0,10.18 -8.25,18.43 -18.43,18.43 -10.17,0 -18.42,-8.25 -18.42,' +
+          '-18.43 0,-10.17 8.25,-18.42 18.42,-18.42 z m 0,4.32 c 7.79,0 14.' +
+          '11,6.31 14.11,14.1 0,7.79 -6.32,14.11 -14.11,14.11 -7.79,0 -14.1' +
+          ',-6.32 -14.1,-14.11 0,-7.79 6.31,-14.1 14.1,-14.1 z" id="path261' +
+          '"/>'#13#10'  '#13#10' </g>'#13#10#13#10'</svg>'#13#10
+      end
+      item
+        IconName = 'DarkModeBold'
+        SVGText = 
+          '<?xml version="1.0" encoding="UTF-8" standalone="no"?>'#10'<svg'#10'   x' +
+          'ml:space="preserve"'#10'   width="75.999329"'#10'   height="76.464935"'#10' ' +
+          '  version="1.1"'#10'   viewBox="0 0 88.23922 88.163077"'#10'   xmlns="ht' +
+          'tp://www.w3.org/2000/svg"><path'#10'   fill="#373435"'#10'   d="m 84.16,' +
+          '41.85 3.83,-4.59 C 90.54,64.85 73.35,88.78 44.29,88.78 19.83,88.' +
+          '78 0,68.94 0,44.48 0,17.98 25,-4.52 51.52,0.78 l -4.59,3.83 c -9' +
+          '.86,10.32 -9.72,26.67 0.42,36.81 10.14,10.14 26.5,10.29 36.81,0.' +
+          '43 z M 34.05,9.65 C 19.44,14.18 8.18,28.57 8.18,44.48 8.18,64.43' +
+          ' 24.34,80.6 44.29,80.6 62.05,80.6 74.11,69.84 78.37,55.02 66.01,' +
+          '59.77 51.5,57.13 41.57,47.21 31.44,37.07 28.9,22.17 34.05,9.65 Z' +
+          '" /></svg>'#10
+      end
+      item
+        IconName = 'LightModeBold'
+        SVGText = 
+          '<?xml version="1.0" encoding="UTF-8" standalone="no"?>'#10'<svg'#10'   x' +
+          'ml:space="preserve"'#10'   width="80"'#10'   height="80"'#10'   version="1.1' +
+          '"'#10'   viewBox="0 0 92.62 92.62"'#10'   xmlns="http://www.w3.org/2000/' +
+          'svg"><path'#10'   fill="#373435"'#10'   d="m 46.31,35.1 c 6.2,0 11.22,5.' +
+          '02 11.22,11.21 0,6.2 -5.02,11.22 -11.22,11.22 -6.19,0 -11.21,-5.' +
+          '02 -11.21,-11.22 0,-6.19 5.02,-11.21 11.21,-11.21 z m 0,-7.1 c 1' +
+          '0.12,0 18.31,8.2 18.31,18.31 0,10.12 -8.19,18.31 -18.31,18.31 C ' +
+          '36.2,64.62 28,56.43 28,46.31 28,36.2 36.2,28 46.31,28 Z M 73.66,' +
+          '80.59 60.68,67.61 c -0.56,-0.56 -0.83,-1.25 -0.8,-2.04 0.04,-0.8' +
+          ' 0.36,-1.47 0.97,-1.98 0.99,-0.83 1.91,-1.75 2.74,-2.74 0.51,-0.' +
+          '61 1.18,-0.93 1.98,-0.97 0.79,-0.03 1.48,0.24 2.04,0.8 l 12.98,1' +
+          '2.98 c 1.07,1.06 1.07,2.8 0,3.86 l -3.07,3.07 c -1.06,1.07 -2.8,' +
+          '1.07 -3.86,0 z M 25.01,31.94 12.03,18.96 c -1.07,-1.06 -1.07,-2.' +
+          '8 0,-3.86 l 3.07,-3.07 c 1.06,-1.07 2.8,-1.07 3.86,0 l 12.98,12.' +
+          '98 c 0.57,0.56 0.84,1.26 0.8,2.05 -0.03,0.79 -0.36,1.46 -0.97,1.' +
+          '97 -0.99,0.84 -1.9,1.75 -2.74,2.74 -0.51,0.61 -1.18,0.94 -1.97,0' +
+          '.97 -0.79,0.04 -1.49,-0.23 -2.05,-0.8 z m 16.4,57.95 V 71.53 c 0' +
+          ',-0.79 0.3,-1.47 0.88,-2.01 0.58,-0.54 1.29,-0.78 2.08,-0.71 0.6' +
+          '5,0.05 1.29,0.08 1.94,0.08 0.65,0 1.3,-0.03 1.94,-0.08 0.79,-0.0' +
+          '7 1.5,0.17 2.08,0.71 0.59,0.54 0.88,1.22 0.88,2.01 v 18.36 c 0,1' +
+          '.51 -1.22,2.73 -2.73,2.73 h -4.34 c -1.5,0 -2.73,-1.22 -2.73,-2.' +
+          '73 z m 0,-68.8 V 2.73 C 41.41,1.23 42.64,0 44.14,0 h 4.34 c 1.51' +
+          ',0 2.73,1.23 2.73,2.73 v 18.36 c 0,0.79 -0.29,1.48 -0.88,2.01 -0' +
+          '.58,0.54 -1.29,0.78 -2.08,0.71 -0.64,-0.05 -1.29,-0.08 -1.94,-0.' +
+          '08 -0.65,0 -1.29,0.03 -1.94,0.08 -0.79,0.07 -1.5,-0.17 -2.08,-0.' +
+          '71 -0.58,-0.53 -0.88,-1.22 -0.88,-2.01 z M 12.03,73.66 25.01,60.' +
+          '68 c 0.56,-0.56 1.26,-0.83 2.05,-0.8 0.79,0.04 1.46,0.36 1.97,0.' +
+          '97 0.84,0.99 1.75,1.91 2.74,2.74 0.61,0.51 0.94,1.18 0.97,1.98 0' +
+          '.04,0.79 -0.23,1.48 -0.8,2.04 L 18.96,80.59 c -1.06,1.07 -2.8,1.' +
+          '07 -3.86,0 l -3.07,-3.07 c -1.06,-1.06 -1.06,-2.8 0,-3.86 z M 60' +
+          '.68,25.01 73.66,12.03 c 1.06,-1.06 2.8,-1.06 3.86,0 l 3.07,3.07 ' +
+          'c 1.07,1.06 1.07,2.8 0,3.86 L 67.61,31.94 c -0.56,0.57 -1.25,0.8' +
+          '4 -2.04,0.8 -0.8,-0.03 -1.47,-0.36 -1.98,-0.97 -0.83,-0.99 -1.75' +
+          ',-1.9 -2.74,-2.74 -0.61,-0.51 -0.93,-1.18 -0.97,-1.97 -0.03,-0.7' +
+          '9 0.24,-1.49 0.8,-2.05 z M 2.73,41.41 h 18.36 c 0.79,0 1.48,0.3 ' +
+          '2.01,0.88 0.54,0.59 0.78,1.29 0.71,2.08 -0.05,0.65 -0.08,1.29 -0' +
+          '.08,1.94 0,0.65 0.03,1.3 0.08,1.94 0.07,0.79 -0.17,1.5 -0.71,2.0' +
+          '8 -0.53,0.59 -1.22,0.89 -2.01,0.89 H 2.73 C 1.23,51.22 0,49.99 0' +
+          ',48.48 v -4.34 c 0,-1.5 1.23,-2.73 2.73,-2.73 z m 68.8,0 h 18.36' +
+          ' c 1.51,0 2.73,1.23 2.73,2.73 v 4.34 c 0,1.51 -1.22,2.74 -2.73,2' +
+          '.74 H 71.53 c -0.79,0 -1.47,-0.3 -2.01,-0.89 -0.54,-0.58 -0.78,-' +
+          '1.29 -0.71,-2.08 0.05,-0.64 0.08,-1.29 0.08,-1.94 0,-0.65 -0.03,' +
+          '-1.29 -0.08,-1.94 -0.07,-0.79 0.17,-1.49 0.71,-2.08 0.54,-0.58 1' +
+          '.22,-0.88 2.01,-0.88 z" /></svg>'#10
+      end
+      item
+        IconName = 'DarkModeSemiBold'
+        SVGText = 
+          '<?xml version="1.0" encoding="UTF-8" standalone="no"?>'#10'<svg'#10'   x' +
+          'ml:space="preserve"'#10'   width="75.004623"'#10'   height="75.465355"'#10' ' +
+          '  version="1.1"'#10'   viewBox="0 0 87.305382 87.222063"'#10'   xmlns="h' +
+          'ttp://www.w3.org/2000/svg"><path'#10'   fill="#373435"'#10'   d="M 49.52' +
+          ',0.51 C 23.85,-3.66 0,18.27 0,44.01 c 0,24.21 19.62,43.83 43.82,' +
+          '43.83 28.07,0 45.06,-22.71 43.37,-49.36 l -2.83,3.38 C 73.7,52.0' +
+          '5 56.84,51.85 46.41,41.42 35.99,31 35.79,14.14 46.03,3.43 Z M 34' +
+          '.17,9.28 c -5.22,12.67 -2.31,27.27 7.4,36.99 9.51,9.51 23.72,12.' +
+          '5 36.25,7.7 l 1.28,-0.5 -0.38,1.32 C 74.03,71.12 60.81,80.99 43.' +
+          '82,80.99 23.4,80.99 6.85,64.44 6.85,44.01 6.85,28 18.09,13.09 33' +
+          '.33,8.36 l 1.39,-0.43 z" /></svg>'#10
+      end
+      item
+        IconName = 'LightModeSemiBold'
+        SVGText = 
+          '<?xml version="1.0" encoding="UTF-8" standalone="no"?>'#10'<svg'#10'   x' +
+          'ml:space="preserve"'#10'   width="79"'#10'   height="79"'#10'   version="1.1' +
+          '"'#10'   viewBox="0 0 91.68 91.68"'#10'   xmlns="http://www.w3.org/2000/' +
+          'svg"><path'#10'   fill="#373435"'#10'   d="m 71.18,41.6 c -0.6,0 -1.11,0' +
+          '.22 -1.51,0.67 -0.41,0.44 -0.59,0.96 -0.54,1.57 0.05,0.66 0.09,1' +
+          '.33 0.09,2 0,0.67 -0.04,1.34 -0.09,2.01 -0.05,0.6 0.13,1.12 0.54' +
+          ',1.57 0.4,0.44 0.91,0.66 1.51,0.66 h 18.44 c 1.14,0 2.06,-0.92 2' +
+          '.06,-2.06 v -4.36 c 0,-1.13 -0.92,-2.06 -2.06,-2.06 z m 2.62,38.' +
+          '2 c 0.8,0.8 2.11,0.8 2.91,0 l 3.09,-3.09 c 0.8,-0.8 0.8,-2.11 0,' +
+          '-2.91 L 66.76,60.76 c -0.43,-0.42 -0.95,-0.62 -1.55,-0.6 -0.6,0.' +
+          '03 -1.09,0.27 -1.48,0.73 -0.87,1.02 -1.82,1.97 -2.84,2.84 -0.46,' +
+          '0.39 -0.7,0.88 -0.73,1.48 -0.02,0.6 0.18,1.12 0.6,1.55 z m -32.2' +
+          ',9.82 c 0,1.14 0.93,2.06 2.06,2.06 h 4.36 c 1.13,0 2.06,-0.92 2.' +
+          '06,-2.06 V 71.18 c 0,-0.6 -0.22,-1.11 -0.66,-1.51 -0.45,-0.41 -0' +
+          '.97,-0.59 -1.57,-0.54 -0.67,0.05 -1.34,0.09 -2.01,0.09 -0.67,0 -' +
+          '1.34,-0.04 -2.01,-0.09 -0.6,-0.05 -1.12,0.13 -1.56,0.54 -0.45,0.' +
+          '4 -0.67,0.91 -0.67,1.51 z M 11.89,73.8 c -0.81,0.8 -0.81,2.11 0,' +
+          '2.91 l 3.08,3.09 c 0.8,0.8 2.11,0.8 2.91,0 L 30.92,66.76 c 0.43,' +
+          '-0.43 0.63,-0.95 0.6,-1.55 -0.02,-0.6 -0.26,-1.09 -0.73,-1.48 -1' +
+          '.02,-0.87 -1.97,-1.82 -2.83,-2.84 -0.39,-0.46 -0.89,-0.7 -1.49,-' +
+          '0.73 -0.6,-0.02 -1.12,0.18 -1.54,0.6 z M 2.06,41.6 C 0.93,41.6 0' +
+          ',42.53 0,43.66 v 4.36 c 0,1.14 0.93,2.06 2.06,2.06 H 20.5 c 0.61' +
+          ',0 1.11,-0.22 1.52,-0.66 0.41,-0.45 0.59,-0.97 0.53,-1.57 -0.05,' +
+          '-0.67 -0.08,-1.34 -0.08,-2.01 0,-0.67 0.03,-1.34 0.08,-2 0.06,-0' +
+          '.61 -0.12,-1.13 -0.53,-1.57 C 21.61,41.82 21.11,41.6 20.5,41.6 Z' +
+          ' M 24.93,30.92 c 0.42,0.43 0.94,0.63 1.54,0.6 0.6,-0.02 1.1,-0.2' +
+          '6 1.49,-0.73 0.86,-1.02 1.81,-1.97 2.83,-2.83 0.47,-0.39 0.71,-0' +
+          '.89 0.73,-1.49 0.03,-0.6 -0.17,-1.12 -0.6,-1.54 L 17.88,11.89 c ' +
+          '-0.8,-0.81 -2.11,-0.81 -2.91,0 l -3.08,3.08 c -0.81,0.8 -0.81,2.' +
+          '11 0,2.91 z M 41.6,20.5 c 0,0.61 0.22,1.11 0.67,1.52 0.44,0.41 0' +
+          '.96,0.59 1.56,0.53 0.67,-0.05 1.34,-0.08 2.01,-0.08 0.67,0 1.34,' +
+          '0.03 2.01,0.08 0.6,0.06 1.12,-0.12 1.57,-0.53 0.44,-0.41 0.66,-0' +
+          '.91 0.66,-1.52 V 2.06 C 50.08,0.93 49.15,0 48.02,0 H 43.66 C 42.' +
+          '53,0 41.6,0.93 41.6,2.06 Z m 19.16,4.43 c -0.42,0.42 -0.62,0.94 ' +
+          '-0.6,1.54 0.03,0.6 0.27,1.1 0.73,1.49 1.02,0.86 1.97,1.81 2.84,2' +
+          '.83 0.39,0.47 0.88,0.71 1.48,0.73 0.6,0.03 1.12,-0.17 1.55,-0.6 ' +
+          'L 79.8,17.88 c 0.8,-0.8 0.8,-2.11 0,-2.91 l -3.09,-3.08 c -0.8,-' +
+          '0.81 -2.11,-0.81 -2.91,0 z m -14.92,3.2 c -9.78,0 -17.71,7.93 -1' +
+          '7.71,17.71 0,9.78 7.93,17.71 17.71,17.71 9.78,0 17.71,-7.93 17.7' +
+          '1,-17.71 0,-9.78 -7.93,-17.71 -17.71,-17.71 z m 0,5.76 c 6.6,0 1' +
+          '1.95,5.35 11.95,11.95 0,6.6 -5.35,11.95 -11.95,11.95 -6.6,0 -11.' +
+          '95,-5.35 -11.95,-11.95 0,-6.6 5.35,-11.95 11.95,-11.95 z" /></sv' +
+          'g>'#10
+      end
+      item
+        IconName = 'AutoMode'
+        SVGText = 
+          '<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns' +
+          '="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><circle cx="40' +
+          '" cy="40" r="32" fill="none" stroke="#373435" stroke-width="6"/>' +
+          '<path fill="#373435" d="M40 8 A32 32 0 0 1 40 72 Z"/></svg>'
+      end>
+    Left = 472
+    Top = 328
+  end
+  object SVGIcnVirtImgListTitleBar: TSVGIconVirtualImageList
+    Images = <
+      item
+        CollectionIndex = 0
+        CollectionName = 'DarkMode'
+        Name = 'DarkMode'
+      end
+      item
+        CollectionIndex = 1
+        CollectionName = 'LightMode'
+        Name = 'LightMode'
+      end
+      item
+        CollectionIndex = 2
+        CollectionName = 'DarkModeBold'
+        Name = 'DarkModeBold'
+      end
+      item
+        CollectionIndex = 3
+        CollectionName = 'LightModeBold'
+        Name = 'LightModeBold'
+      end
+      item
+        CollectionIndex = 4
+        CollectionName = 'DarkModeSemiBold'
+        Name = 'DarkModeSemiBold'
+      end
+      item
+        CollectionIndex = 5
+        CollectionName = 'LightModeSemiBold'
+        Name = 'LightModeSemiBold'
+      end
+      item
+        CollectionIndex = 6
+        CollectionName = 'AutoMode'
+        Name = 'AutoMode'
+      end>
+    ImageCollection = SVGIcnImgCollTitleBar
+    Left = 480
+    Top = 264
   end
 end

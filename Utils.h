@@ -14,6 +14,9 @@
 
 //---------------------------------------------------------------------------
 
+enum class UIMode { Unset, Light, Dark };
+
+extern String GetActiveStyleName();
 extern uint16_t ParseWord( String Text );
 
 //---------------------------------------------------------------------------

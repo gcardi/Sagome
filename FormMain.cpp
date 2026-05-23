@@ -6,6 +6,10 @@
 #include <System.SyncObjs.hpp>
 #include <System.DateUtils.hpp>
 #include <System.Win.ComObj.hpp>
+#include <System.Win.Registry.hpp>
+#include <Vcl.Themes.hpp>
+#include <dwmapi.h>
+#pragma comment(lib, "dwmapi")
 
 #include <memory>
 #include <iterator>
@@ -54,6 +58,8 @@ using std::swap;
 #pragma link "FrameSerialSettings"
 #pragma link "FrameLog"
 #pragma link "FrameModbusFunctions"
+#pragma link "SVGIconImageCollection"
+#pragma link "SVGIconVirtualImageList"
 #pragma resource "*.dfm"
 TfrmMain *frmMain;
 //---------------------------------------------------------------------------
@@ -140,6 +146,14 @@ void __fastcall TfrmMain::WndProc( Winapi::Messages::TMessage &Message )
                 Close();
                 tmrReadStatusPorta->Enabled = true;
                 return;
+            case WM_SETTINGCHANGE:
+                if ( userInterfaceMode_ == UIMode::Unset && Message.LParam ) {
+                    LPCTSTR Area = reinterpret_cast<LPCTSTR>( Message.LParam );
+                    if ( SameText( Area, _D( "ImmersiveColorSet" ) ) ) {
+                        ApplyResolvedUIMode();
+                    }
+                }
+                break;
             default:
                 break;
         }
@@ -160,6 +174,9 @@ void __fastcall TfrmMain::WndProc( Winapi::Messages::TMessage &Message )
 void TfrmMain::Init()
 {
     SetupCaption();
+
+    TitleBarPanel1->OnMouseDown = &TitleBarCaptionMouseDown;
+    lblTitleBarCaption->OnMouseDown = &TitleBarCaptionMouseDown;
 
     tbshtMic->ControlStyle = tbshtMic->ControlStyle << csOpaque;
     pnlSpectrogram->ControlStyle = pnlSpectrogram->ControlStyle << csOpaque;
@@ -203,6 +220,8 @@ void TfrmMain::Init()
     UpdateFreqCutControls();
 
     ComputeWindow();
+
+    ApplyResolvedUIMode();
 }
 //---------------------------------------------------------------------------
 
@@ -236,11 +255,15 @@ void TfrmMain::SetupCaption()
                 Info.ProductVersion
             ) )
         );
+    if ( lblTitleBarCaption ) {
+        lblTitleBarCaption->Caption = Caption;
+    }
 }
 //---------------------------------------------------------------------------
 
 void TfrmMain::RestoreProperties()
 {
+    RESTORE_LOCAL_PROPERTY( UserInterfaceMode );
     RESTORE_LOCAL_PROPERTY( ModbusProtocolName );
 
     RESTORE_LOCAL_PROPERTY( SlaveID );
@@ -289,6 +312,7 @@ void TfrmMain::RestoreProperties()
 
 void TfrmMain::SaveProperties() const
 {
+    SAVE_LOCAL_PROPERTY( UserInterfaceMode );
     SAVE_LOCAL_PROPERTY( ModbusProtocolName );
 
     SAVE_LOCAL_PROPERTY( SlaveID );
@@ -2031,7 +2055,7 @@ void __fastcall TfrmMain::PaintBox1_5Paint(TObject *Sender)
 {
     TPaintBox& PaintBox = static_cast<TPaintBox&>( *Sender );
 
-    Led Led{ 12 };
+    Led Led{ 16 };
 
     auto const Gap = ( PaintBox.ClientWidth - Led.GetSize() * 8 ) / 8;
     auto const HalfGap = Gap / 2;
@@ -3151,6 +3175,312 @@ void __fastcall TfrmMain::FormShow(TObject *Sender)
             TMsgDlgButtons() << TMsgDlgBtn::mbClose, {}
         );
     }
+}
+//---------------------------------------------------------------------------
+
+UIMode TfrmMain::GetUserInterfaceMode() const
+{
+    switch ( userInterfaceMode_ ) {
+        case UIMode::Unset:
+        case UIMode::Light:
+        case UIMode::Dark:
+            return userInterfaceMode_;
+        default:
+            return UIMode::Unset;
+    }
+}
+//---------------------------------------------------------------------------
+
+UIMode TfrmMain::GetEffectiveUIMode() const
+{
+    UIMode m = GetUserInterfaceMode();
+    if ( m == UIMode::Unset ) {
+        m = IsWindowsAppDarkMode() ? UIMode::Dark : UIMode::Light;
+    }
+    return m;
+}
+//---------------------------------------------------------------------------
+
+bool TfrmMain::IsTitleBarDarkMode() const
+{
+    switch ( GetUserInterfaceMode() ) {
+        case UIMode::Dark:
+            return true;
+        case UIMode::Light:
+            return false;
+        default:
+            break;
+    }
+
+    if ( auto Style = TStyleManager::ActiveStyle ) {
+        TColor Color = TColor( ::ColorToRGB( Style->GetSystemColor( clBtnFace ) ) );
+        int const Luma =
+            ( 299 * GetRValue( Color ) +
+              587 * GetGValue( Color ) +
+              114 * GetBValue( Color ) ) / 1000;
+        return Luma < 128;
+    }
+
+    return IsWindowsAppDarkMode();
+}
+//---------------------------------------------------------------------------
+
+void TfrmMain::SetUserInterfaceMode( UIMode Mode )
+{
+    if ( Mode != userInterfaceMode_ ) {
+        userInterfaceMode_ = Mode;
+        ApplyResolvedUIMode();
+    }
+}
+//---------------------------------------------------------------------------
+
+bool TfrmMain::IsWindowsAppDarkMode()
+{
+    auto Reg = std::make_unique<TRegistry>( KEY_READ );
+    Reg->RootKey = HKEY_CURRENT_USER;
+    try {
+        if ( Reg->OpenKeyReadOnly(
+                 _D( "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" )
+             )
+             && Reg->ValueExists( _D( "AppsUseLightTheme" ) ) )
+        {
+            return Reg->ReadInteger( _D( "AppsUseLightTheme" ) ) == 0;
+        }
+    }
+    catch ( ... ) {
+    }
+    return false;
+}
+//---------------------------------------------------------------------------
+
+void TfrmMain::ApplyResolvedUIMode()
+{
+    UIMode Resolved = userInterfaceMode_;
+    if ( Resolved == UIMode::Unset ) {
+        Resolved = IsWindowsAppDarkMode() ? UIMode::Dark : UIMode::Light;
+    }
+
+    switch ( Resolved ) {
+        case UIMode::Light:
+            TStyleManager::TrySetStyle( _T( "Windows" ) );
+            break;
+        case UIMode::Dark:
+            TStyleManager::TrySetStyle( _T( "Windows Modern Dark" ) );
+            break;
+        default:
+            TStyleManager::TrySetStyle( defaultStyleName_ );
+            break;
+    }
+    ApplyTitleBarStyleColors();
+    SetupUIModeControls();
+    UpdateIcons();
+    TitleBarPanel1->Invalidate();
+    if ( HandleAllocated() ) {
+        ::SetWindowPos(
+            Handle, nullptr, 0, 0, 0, 0,
+            SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE |
+                SWP_FRAMECHANGED
+        );
+    }
+}
+//---------------------------------------------------------------------------
+
+void TfrmMain::CycleUIMode()
+{
+    switch ( UserInterfaceMode ) {
+        case UIMode::Unset: UserInterfaceMode = UIMode::Light; break;
+        case UIMode::Light: UserInterfaceMode = UIMode::Dark;  break;
+        case UIMode::Dark:  UserInterfaceMode = UIMode::Unset; break;
+    }
+}
+//---------------------------------------------------------------------------
+
+void TfrmMain::SetupUIModeControls()
+{
+    static constexpr LPCTSTR NextLight = _D( "Imposta tema chiaro" );
+    static constexpr LPCTSTR NextDark = _D( "Imposta tema scuro" );
+    static constexpr LPCTSTR NextDefault = _D( "Ripristina tema predefinito" );
+    switch ( userInterfaceMode_ ) {
+        case UIMode::Unset:
+            TitleBarPanel1->CustomButtons->Items[0]->Hint = NextLight;
+            break;
+        case UIMode::Light:
+            TitleBarPanel1->CustomButtons->Items[0]->Hint = NextDark;
+            break;
+        case UIMode::Dark:
+            TitleBarPanel1->CustomButtons->Items[0]->Hint = NextDefault;
+            break;
+    }
+}
+//---------------------------------------------------------------------------
+
+namespace {
+template<typename T>
+class UpdateSession {
+public:
+    UpdateSession( T& Obj ) : obj_{ Obj } { Obj.BeginUpdate(); }
+    ~UpdateSession() { try { obj_.EndUpdate(); } catch ( ... ) {} }
+    UpdateSession( UpdateSession const & ) = delete;
+    UpdateSession& operator=( UpdateSession const & ) = delete;
+private:
+    T& obj_;
+};
+}
+
+void TfrmMain::UpdateIcons()
+{
+    TColor const FGColor = IsTitleBarDarkMode() ? clWhite : TColor( 0x010101 );
+
+    SVGIcnImgCollTitleBar->ApplyFixedColorToRootOnly = false;
+    SVGIcnImgCollTitleBar->FixedColor = FGColor;
+
+    UpdateSession Sess{ *SVGIcnVirtImgListTitleBar };
+    SVGIcnVirtImgListTitleBar->ApplyFixedColorToRootOnly = false;
+    SVGIcnVirtImgListTitleBar->FixedColor = FGColor;
+    SVGIcnVirtImgListTitleBar->Clear();
+    SVGIcnVirtImgListTitleBar->Add( {}, 0, SVGIcnImgCollTitleBar->Count - 1 );
+}
+//---------------------------------------------------------------------------
+
+void TfrmMain::ApplyTitleBarStyleColors()
+{
+    bool const Dark = IsTitleBarDarkMode();
+
+    TColor const Bg         = Dark ? TColor( 0x202020 ) : clWhite;
+    TColor const Fg         = Dark ? clWhite            : TColor( 0x010101 );
+    TColor const HoverBg    = Dark ? TColor( 0x404040 ) : TColor( 0xE6E6E6 );
+    TColor const HoverFg    = Fg;
+    TColor const PressedBg  = Dark ? TColor( 0x505050 ) : TColor( 0xCCCCCC );
+    TColor const InactiveBg = Bg;
+    TColor const InactiveFg = Dark ? TColor( 0x999999 ) : TColor( 0x666666 );
+
+    CustomTitleBar->BackgroundColor = Bg;
+    CustomTitleBar->ForegroundColor = Fg;
+    CustomTitleBar->InactiveBackgroundColor = InactiveBg;
+    CustomTitleBar->InactiveForegroundColor = InactiveFg;
+    CustomTitleBar->ButtonBackgroundColor = Bg;
+    CustomTitleBar->ButtonForegroundColor = Fg;
+    CustomTitleBar->ButtonHoverBackgroundColor = HoverBg;
+    CustomTitleBar->ButtonHoverForegroundColor = HoverFg;
+    CustomTitleBar->ButtonPressedBackgroundColor = PressedBg;
+    CustomTitleBar->ButtonPressedForegroundColor = HoverFg;
+    CustomTitleBar->ButtonInactiveBackgroundColor = InactiveBg;
+    CustomTitleBar->ButtonInactiveForegroundColor = InactiveFg;
+
+    TitleBarPanel1->Color = Bg;
+    TitleBarPanel1->ParentBackground = false;
+    if ( lblTitleBarCaption ) {
+        lblTitleBarCaption->Font->Color = Active ? Fg : InactiveFg;
+        lblTitleBarCaption->Color = Bg;
+        lblTitleBarCaption->Transparent = true;
+    }
+
+    if ( HandleAllocated() ) {
+        constexpr DWORD DWMWA_USE_IMMERSIVE_DARK_MODE_W11 = 20;
+        constexpr DWORD DWMWA_USE_IMMERSIVE_DARK_MODE_W10 = 19;
+        BOOL DarkAttr = Dark ? TRUE : FALSE;
+        if ( ::DwmSetWindowAttribute(
+                 Handle, DWMWA_USE_IMMERSIVE_DARK_MODE_W11,
+                 &DarkAttr, sizeof( DarkAttr ) ) != S_OK )
+        {
+            ::DwmSetWindowAttribute(
+                Handle, DWMWA_USE_IMMERSIVE_DARK_MODE_W10,
+                &DarkAttr, sizeof( DarkAttr )
+            );
+        }
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::TitleBarPanel1CustomButtons0Paint(TObject *Sender)
+{
+    auto& Btn = static_cast<TSystemTitlebarButton&>( *Sender );
+    auto& Cnvs = *Btn.Canvas;
+    auto BtnRect = Btn.ClientRect;
+
+    Cnvs.Brush->Color = TitleBarPanel1->Color;
+    Cnvs.Brush->Style = bsSolid;
+    Cnvs.FillRect( BtnRect );
+
+    int IconIndex;
+    switch ( UserInterfaceMode ) {
+        case UIMode::Unset: IconIndex = 5; break; // next: Light -> sun
+        case UIMode::Light: IconIndex = 4; break; // next: Dark  -> moon
+        case UIMode::Dark:  IconIndex = 6; break; // next: Unset -> auto
+        default:            IconIndex = 6; break;
+    }
+
+    SVGIcnVirtImgListTitleBar->Draw(
+        &Cnvs,
+        ( BtnRect.Width() - SVGIcnVirtImgListTitleBar->Width ) / 2,
+        ( BtnRect.Height() - SVGIcnVirtImgListTitleBar->Height ) / 2,
+        IconIndex
+    );
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::TitleBarPanel1CustomButtons0Click(TObject *Sender)
+{
+    CycleUIMode();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::TitleBarCaptionMouseDown(
+    TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y
+)
+{
+    if ( Button == mbLeft ) {
+        ::ReleaseCapture();
+        ::SendMessage( Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0 );
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::ApplicationEvents1Activate(TObject *Sender)
+{
+    ApplyTitleBarStyleColors();
+    UpdateIcons();
+    TitleBarPanel1->Invalidate();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::ApplicationEvents1Deactivate(TObject *Sender)
+{
+    ApplyTitleBarStyleColors();
+    UpdateIcons();
+    TitleBarPanel1->Invalidate();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::actViewToggleUIModeExecute(TObject *Sender)
+{
+    CycleUIMode();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::actViewSetUIModeLightExecute(TObject *Sender)
+{
+    UserInterfaceMode = UIMode::Light;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::actViewSetUIModeLightUpdate(TObject *Sender)
+{
+    decltype( auto ) Act = static_cast<TAction&>( *Sender );
+    Act.Enabled = UserInterfaceMode != UIMode::Light;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::actViewSetUIModeDarkExecute(TObject *Sender)
+{
+    UserInterfaceMode = UIMode::Dark;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::actViewSetUIModeDarkUpdate(TObject *Sender)
+{
+    decltype( auto ) Act = static_cast<TAction&>( *Sender );
+    Act.Enabled = UserInterfaceMode != UIMode::Dark;
 }
 //---------------------------------------------------------------------------
 

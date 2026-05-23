@@ -4,6 +4,7 @@
 #define FormMainH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
+#include <System.ImageList.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
@@ -15,6 +16,12 @@
 #include <Vcl.AppEvnts.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.WinXCtrls.hpp>
+#include <Vcl.BaseImageCollection.hpp>
+#include <Vcl.ImgList.hpp>
+#include <Vcl.TitleBarCtrls.hpp>
+#include <Vcl.VirtualImageList.hpp>
+#include "SVGIconImageCollection.hpp"
+#include "SVGIconVirtualImageList.hpp"
 
 #include "FrameSerialSettings.h"
 #include "FrameLog.h"
@@ -41,7 +48,25 @@
 #include "Modbus.h"
 #include "GdiPlusUtils.h"
 #include "CArray.h"
+#include "Utils.h"
 
+//---------------------------------------------------------------------------
+
+namespace Alt {
+class TTitleBarPanel : public ::TTitleBarPanel
+{
+__published:
+    __property Color;
+    __property ParentBackground;
+    __property OnMouseDown;
+public:
+    __fastcall virtual TTitleBarPanel(System::Classes::TComponent* AOwner)
+      : ::TTitleBarPanel(AOwner) {}
+
+    inline __fastcall TTitleBarPanel(HWND ParentWindow)
+      : ::TTitleBarPanel(ParentWindow) {}
+};
+}
 //---------------------------------------------------------------------------
 
 using TConfigRegistryForm =
@@ -283,6 +308,24 @@ __published:	// IDE-managed Components
     TButton *Button29;
     TPanel *Panel3;
     TPanel *pnlStopwatch;
+    Alt::TTitleBarPanel *TitleBarPanel1;
+    TLabel *lblTitleBarCaption;
+    TSVGIconImageCollection *SVGIcnImgCollTitleBar;
+    TSVGIconVirtualImageList *SVGIcnVirtImgListTitleBar;
+    TAction *actViewSetUIModeLight;
+    TAction *actViewSetUIModeDark;
+    TAction *actViewToggleUIMode;
+    void __fastcall TitleBarPanel1CustomButtons0Paint(TObject *Sender);
+    void __fastcall TitleBarPanel1CustomButtons0Click(TObject *Sender);
+    void __fastcall TitleBarCaptionMouseDown(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y);
+    void __fastcall ApplicationEvents1Activate(TObject *Sender);
+    void __fastcall ApplicationEvents1Deactivate(TObject *Sender);
+    void __fastcall actViewToggleUIModeExecute(TObject *Sender);
+    void __fastcall actViewSetUIModeLightExecute(TObject *Sender);
+    void __fastcall actViewSetUIModeLightUpdate(TObject *Sender);
+    void __fastcall actViewSetUIModeDarkExecute(TObject *Sender);
+    void __fastcall actViewSetUIModeDarkUpdate(TObject *Sender);
     void __fastcall EnableIfConnectionIsClose(TObject *Sender);
     void __fastcall EnableIfConnectionIsOpen(TObject *Sender);
     void __fastcall actCloseExecute(TObject *Sender);
@@ -355,6 +398,24 @@ __published:	// IDE-managed Components
 protected:
 	virtual void __fastcall WndProc( Winapi::Messages::TMessage &Message ) override;
 private:	// User declarations
+
+    UIMode userInterfaceMode_ { UIMode::Unset };
+    String defaultStyleName_ { GetActiveStyleName() };
+
+    UIMode GetUserInterfaceMode() const;
+    void SetUserInterfaceMode( UIMode Val );
+    UIMode GetEffectiveUIMode() const;
+    void CycleUIMode();
+    void SetupUIModeControls();
+    void UpdateIcons();
+    void ApplyTitleBarStyleColors();
+    void ApplyResolvedUIMode();
+    bool IsTitleBarDarkMode() const;
+    static bool IsWindowsAppDarkMode();
+
+    __property UIMode UserInterfaceMode = {
+        read = GetUserInterfaceMode, write = SetUserInterfaceMode
+    };
 
     using ModbusProtocol = Modbus::Master::Protocol  ;
     using ModbusProtocolPtr = std::unique_ptr<ModbusProtocol>;
