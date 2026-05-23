@@ -4,6 +4,8 @@
 #pragma hdrstop
 #include <tchar.h>
 
+#include <Vcl.Styles.hpp>
+#include <Vcl.Themes.hpp>
 #pragma comment( lib, "libfftw3-3" )
 
 //---------------------------------------------------------------------------
