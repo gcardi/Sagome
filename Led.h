@@ -18,7 +18,7 @@ public:
     void Draw( Gdiplus::Graphics& Canvas,
                Gdiplus::Color Color,
                Gdiplus::PointF Offset = Gdiplus::PointF(),
-               Gdiplus::Color RingColor = Gdiplus::Color( 255, 8, 8, 8 ),
+               Gdiplus::Color RingColor = Gdiplus::Color( 255, 32, 32, 32 ),
                float RingSize = 2.0F ) const;
     float GetSize() const { return size_; }
 private:
