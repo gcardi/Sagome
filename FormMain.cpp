@@ -1460,7 +1460,7 @@ void __fastcall TfrmMain::actGarePrimaPGCMiratoStartExecute(TObject *Sender)
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
         { CmdType::MessaggioAsincrono, AttenzioneAttesa, AttenzioneTxt, AttenzioneVoice },
         { CmdType::Chiusura,   7,   _T( "Chiuso 7 sec" ) },
-        { CmdType::Apertura, 240,   _T( "Aperto 300 sec" ) },
+        { CmdType::Apertura, 240,   _T( "Aperto 240 sec" ) },
         { CmdType::Chiusura,   AttesaChiusura,   ChiusoTxt },
         { CmdType::MessaggioSincrono, 0, ScaricareTxt, ScaricareVoice },
     } };
@@ -1483,7 +1483,7 @@ void __fastcall TfrmMain::actGareProssimaPGCMiratoStartExecute(TObject *Sender)
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
         { CmdType::MessaggioAsincrono, AttenzioneAttesa, AttenzioneTxt, AttenzioneVoice },
         { CmdType::Chiusura,   7,   _T( "Chiuso 7 sec" ) },
-        { CmdType::Apertura, 240,   _T( "Aperto 300 sec" ) },
+        { CmdType::Apertura, 240,   _T( "Aperto 240 sec" ) },
         { CmdType::Chiusura,   AttesaChiusura,   ChiusoTxt },
         { CmdType::MessaggioSincrono, 0, ScaricareTxt, ScaricareVoice },
     } };
