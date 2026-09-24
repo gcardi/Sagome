@@ -1454,13 +1454,13 @@ void __fastcall TfrmMain::actGarePrimaPGCMiratoStartExecute(TObject *Sender)
         { CmdType::Apertura, 0, ApertoSubitoTxt },
         {
             CmdType::MessaggioSincrono, 0,
-            _T( "Per la prima serie di gara di tiro mirato in 300 secondi, caricare." ),
-                _T( "PGC_Mirato_10.wav" )
+            _T( "Per la prima serie di gara di tiro mirato in 240 secondi, caricare." ),
+            _T( "PGC_Mirato_10.wav" )
         },
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
         { CmdType::MessaggioAsincrono, AttenzioneAttesa, AttenzioneTxt, AttenzioneVoice },
         { CmdType::Chiusura,   7,   _T( "Chiuso 7 sec" ) },
-        { CmdType::Apertura, 300,   _T( "Aperto 300 sec" ) },
+        { CmdType::Apertura, 240,   _T( "Aperto 300 sec" ) },
         { CmdType::Chiusura,   AttesaChiusura,   ChiusoTxt },
         { CmdType::MessaggioSincrono, 0, ScaricareTxt, ScaricareVoice },
     } };
@@ -1477,13 +1477,13 @@ void __fastcall TfrmMain::actGareProssimaPGCMiratoStartExecute(TObject *Sender)
         { CmdType::Apertura, 0, ApertoSubitoTxt },
         {
             CmdType::MessaggioSincrono, 0,
-            _T( "Per la prossima serie di gara di tiro mirato in 300 secondi, caricare." ),
+            _T( "Per la prossima serie di gara di tiro mirato in 240 secondi, caricare." ),
             _T( "PGC_Mirato_11.wav" )
         },
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
         { CmdType::MessaggioAsincrono, AttenzioneAttesa, AttenzioneTxt, AttenzioneVoice },
         { CmdType::Chiusura,   7,   _T( "Chiuso 7 sec" ) },
-        { CmdType::Apertura, 300,   _T( "Aperto 300 sec" ) },
+        { CmdType::Apertura, 240,   _T( "Aperto 300 sec" ) },
         { CmdType::Chiusura,   AttesaChiusura,   ChiusoTxt },
         { CmdType::MessaggioSincrono, 0, ScaricareTxt, ScaricareVoice },
     } };
@@ -1501,7 +1501,7 @@ void __fastcall TfrmMain::actGareProvaPGCMiratoStartExecute(TObject *Sender)
         {
             CmdType::MessaggioSincrono, 0,
             _T( "Per la serie di prova di tiro mirato in 240 secondi, caricare." ),
-                _T( "PGC_Mirato_9.wav" )
+            _T( "PGC_Mirato_9.wav" )
         },
         { CmdType::Apertura, Time60sec, Attesa60SecTxt },
         { CmdType::MessaggioAsincrono, AttenzioneAttesa, AttenzioneTxt, AttenzioneVoice },
